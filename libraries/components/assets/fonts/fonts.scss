@@ -13,11 +13,14 @@ body {
 }
 
 .mdc-text-field--filled .mdc-floating-label,
-.mdc-text-field--outlined .mdc-floating-label {
+.mdc-text-field--outlined .mdc-floating-label,
+.mat-mdc-checkbox .mdc-label,
+.mdc-button .mdc-button__label {
   @extend .default-title-font;
 }
 .tsd-hint,
 .tsd-custom-error,
-.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+.mat-mdc-form-field-input-control.mat-mdc-form-field-input-control,
+.mat-mdc-snack-bar-label {
   @extend .default-body-font;
 }

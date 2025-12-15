@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @toshida/ng-components/layouts/default
+ * Public API Surface of @toshida/ng-components/layouts/admin
  */
 
 export * from './content';

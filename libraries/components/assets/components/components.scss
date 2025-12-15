@@ -1,1 +1,13 @@
 @use 'fields';
+@use 'toasts';
+
+html {
+  --tsd-form-field-hint-color: rgb(128, 128, 128);
+  --tsd-form-field-error-color: rgb(255, 0, 0);
+  --tsd-option-span-extra: gray;
+  --tsd-snackbar--danger-color: white;
+  --tsd-snackbar--danger-background-color: red;
+  --tsd-snackbar--success-color: black;
+  --tsd-snackbar--success-background-color: rgb(24, 182, 116);
+  --tsd-snackbar--success-action-button-color: #004646;
+}

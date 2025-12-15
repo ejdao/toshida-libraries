@@ -5,7 +5,7 @@ import { SidebarComponent } from './sidebar';
 import { TsdLayoutsMenuSection } from '@toshida/ng-components/layouts';
 
 @Component({
-  selector: 'tsd-default-db',
+  selector: 'tsd-admin-db-container',
   imports: [SidebarComponent, HeaderComponent, DbContentComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -14,24 +14,24 @@ import { TsdLayoutsMenuSection } from '@toshida/ng-components/layouts';
       [class.sidebar-collapsed]="sidebarCollapsed()"
       [class.light-mode]="isDarkMode() === false"
     >
-      <tsd-default-db-sidebar
+      <tsd-db-sidebar
         [menuSections]="menuSections"
         [collapsed]="sidebarCollapsed"
         (toggle)="toggleSidebar()"
         [isDarkMode]="isDarkMode"
       />
       <div class="main-wrapper">
-        <tsd-default-db-header
+        <tsd-db-header
           (toggleMenu)="toggleSidebar()"
           [isDarkMode]="isDarkMode"
           (toggleTheme)="toggleTheme()"
         />
-        <tsd-default-db-content />
+        <tsd-db-content />
       </div>
     </div>
   `,
 })
-export class AdminDashboardComponent {
+export class AdminDashboardContainerComponent {
   @Input() menuSections = signal<TsdLayoutsMenuSection[]>([]);
 
   sidebarCollapsed = signal(false);

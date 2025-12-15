@@ -9,7 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'tsd-default-db-header',
+  selector: 'tsd-db-header',
   imports: [FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

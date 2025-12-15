@@ -11,7 +11,7 @@ import { TsdLayoutsMenuSection, TsdLayoutsNavItem } from '@toshida/ng-components
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'tsd-default-db-sidebar',
+  selector: 'tsd-db-sidebar',
   imports: [CommonModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
