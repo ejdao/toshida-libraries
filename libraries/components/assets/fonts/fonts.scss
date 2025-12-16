@@ -18,9 +18,12 @@ body {
 .mdc-button .mdc-button__label {
   @extend .default-title-font;
 }
+
 .tsd-hint,
 .tsd-custom-error,
 .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control,
-.mat-mdc-snack-bar-label {
+.mat-mdc-snack-bar-label,
+.tsd-modal__title,
+.tsd-modal__content {
   @extend .default-body-font;
 }
