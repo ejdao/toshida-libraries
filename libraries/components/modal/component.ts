@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@toshida/material/dialog';
 import { MatDividerModule } from '@toshida/material/divider';
 import { MatButtonModule } from '@toshida/material/button';
@@ -20,13 +20,10 @@ export class TsdModalComponent implements OnInit {
   private _hasTopCloseButton = true;
 
   constructor(
-    href: ElementRef<HTMLElement>,
     private _dialogRef: MatDialogRef<TsdModalComponent>,
     @Inject(MAT_DIALOG_DATA)
     public data: { content: string; title: string; options?: TsdModalConfig; type: TsdModalType },
-  ) {
-    href.nativeElement.classList.add('tak-modal');
-  }
+  ) {}
 
   public ngOnInit(): void {
     if (this.data.type === 'alert') this._isAlert = true;

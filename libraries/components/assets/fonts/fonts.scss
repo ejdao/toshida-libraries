@@ -15,7 +15,10 @@ body {
 .mdc-text-field--filled .mdc-floating-label,
 .mdc-text-field--outlined .mdc-floating-label,
 .mat-mdc-checkbox .mdc-label,
-.mdc-button .mdc-button__label {
+.mdc-button .mdc-button__label,
+.tsd-table__content .mat-sort-header-content,
+.tsd-table__header,
+.tsd-table__sub-header {
   @extend .default-title-font;
 }
 
@@ -25,6 +28,8 @@ body {
 .mat-mdc-snack-bar-label,
 .tsd-modal__title,
 .tsd-modal__content,
-.mdc-list-item {
+.mdc-list-item,
+.tsd-table__content .mdc-data-table__cell,
+.mat-mdc-paginator-container {
   @extend .default-body-font;
 }
