@@ -1,0 +1,70 @@
+<div class="tsd-form-container">
+  <mat-form-field
+    [floatLabel]="config.floatLabel || 'auto'"
+    [class.tsd-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
+    [appearance]="config.appearance || defaultAppearance"
+    [color]="config.color || 'primary'"
+  >
+    <mat-label>
+      <ng-content />{{ ' ' }}
+      @if (required) {
+        <span class="tsd-field__danger-x">*</span>
+      }
+    </mat-label>
+    <input
+      matInput
+      [type]="config.isHidden && !decrypted ? 'password' : 'text'"
+      [autocomplete]="config.autocomplete || 'off'"
+      [matAutocomplete]="auto"
+      [value]="value"
+      (keyup)="onChange($event)"
+      (change)="onChange($event)"
+      [placeholder]="placeholder"
+      [disabled]="isDisabled"
+      [attr.minLength]="config.minLength"
+      [attr.maxLength]="config.maxLength"
+      (focus)="onFocus()"
+      (focusout)="onFocusOut()"
+    />
+    @if (isRemoteSearch && isLoading) {
+      <button matSuffix mat-icon-button class="tsd-suffix-button" type="button">
+        <mat-spinner [diameter]="15" mode="indeterminate"></mat-spinner>
+      </button>
+    }
+    @if ((control.value || value) && config.hasClearButton && !disabled) {
+      <button
+        matSuffix
+        mat-icon-button
+        class="tsd-suffix-button"
+        type="button"
+        (click)="onClearControl()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+    <mat-autocomplete #auto="matAutocomplete">
+      @for (suggestion of filteredOptions | async; track suggestion) {
+        <mat-option
+          [value]="suggestion[option]"
+          [class.tak-option-extra]="extraInfo"
+          (onSelectionChange)="emit($event)"
+          (click)="emitWithClick(suggestion)"
+          title="{{ suggestion[option] }} {{ extraInfo ? '(' + suggestion[extraInfo] + ')' : '' }}"
+        >
+          <span>{{ suggestion[option] }}</span>
+          @if (extraInfo) {
+            <span class="tsd-option-span-extra">{{ suggestion[extraInfo] }}</span>
+          }
+        </mat-option>
+      }
+      @if (notSuggestions) {
+        <mat-option>
+          <span class="tsd-auto-complete-not-records"> No se encuentran resultados </span>
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+  @if (isInvalid || (isSubmitted && control.invalid)) {
+    <tsd-error [control]="control" />
+  }
+</div>

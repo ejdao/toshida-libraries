@@ -18,7 +18,7 @@ import {
   FormControl,
   NgControl,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { TsdErrorComponent } from '../error/component';
 import { TSD_DEFAULT_APPEARANCE_FORM, TsdConfigFieldI } from '../common';
 import { MatFormFieldModule } from '@toshida/material/form-field';
@@ -53,7 +53,7 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
 
   readonly defaultAppearance = TSD_DEFAULT_APPEARANCE_FORM;
 
-  private _subscription!: Subscription;
+  private _unsubscribe$ = new Subject<void>();
   private _isSubmitted = false;
   private _isInvalid = false;
   private _decrypted = false;
@@ -67,7 +67,7 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
   ) {
     if (_ngControl) this._ngControl.valueAccessor = this;
     if (_formGroupDirective) {
-      this._subscription = _formGroupDirective.ngSubmit.subscribe(() => {
+      _formGroupDirective.ngSubmit.pipe(takeUntil(this._unsubscribe$)).subscribe(() => {
         this._isSubmitted = true;
         _cd.markForCheck();
       });
@@ -137,7 +137,8 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   public ngOnDestroy(): void {
-    if (this._subscription) this._subscription.unsubscribe();
+    this._unsubscribe$.next();
+    this._unsubscribe$.complete();
   }
 
   get control(): FormControl {

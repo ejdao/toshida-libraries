@@ -3,6 +3,9 @@ mat-form-field {
 }
 
 .tsd {
+  &-auto-complete-not-records {
+    color: var(--tsd-form-field-error-color);
+  }
   &-suffix-button {
     margin-right: 10px;
   }
@@ -26,7 +29,7 @@ mat-form-field {
     mat-form-field {
       width: calc(100% - 10px);
     }
-    .mat-form-field-invalid {
+    .tsd-form-field-invalid {
       .tsd-hint,
       .tsd-suffix-button {
         color: var(--tsd-form-field-error-color);

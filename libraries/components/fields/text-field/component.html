@@ -1,7 +1,7 @@
 <div class="tsd-form-container">
   <mat-form-field
     [floatLabel]="config.floatLabel || 'auto'"
-    [class.mat-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
+    [class.tsd-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
     [appearance]="config.appearance || defaultAppearance"
     [color]="config.color || 'primary'"
   >
@@ -12,8 +12,8 @@
       }
     </mat-label>
     <input
-      [type]="config.isHidden && !decrypted ? 'password' : 'text'"
       matInput
+      [type]="config.isHidden && !decrypted ? 'password' : 'text'"
       [autocomplete]="config.autocomplete || 'off'"
       [value]="value"
       (keyup)="onChange($event)"
@@ -25,7 +25,13 @@
       (focusout)="onFocusOut()"
     />
     @if (control.value && config.hasClearButton && !isDisabled) {
-      <button class="tsd-suffix-button" matSuffix mat-icon-button (click)="onClearControl()">
+      <button
+        class="tsd-suffix-button"
+        matSuffix
+        mat-icon-button
+        type="button"
+        (click)="onClearControl()"
+      >
         <mat-icon>close</mat-icon>
       </button>
     }
@@ -34,6 +40,7 @@
         class="tsd-suffix-button"
         matSuffix
         mat-icon-button
+        type="button"
         (click)="onExecuteAction.emit(control.value)"
       >
         <mat-icon>{{ config.actionIcon || 'search' }}</mat-icon>

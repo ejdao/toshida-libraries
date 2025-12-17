@@ -9,5 +9,6 @@ export * from './common';
 export * from './validators';
 
 export * from './text-field/component';
+export * from './auto-complete-field/component';
 
 export * from './module';
