@@ -66,7 +66,6 @@ export class TsdAutocompleteFieldComponent implements OnInit, OnDestroy, Control
   private _value = '';
 
   // Exclusivos
-  @Input() extraInfo = '';
   @Input() suggestions: any[] = [];
   @Input() isLoading = false;
   @Input() debounceTimeForRemoteSearch = 500;

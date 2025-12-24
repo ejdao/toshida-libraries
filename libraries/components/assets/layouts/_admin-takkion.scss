@@ -1,0 +1,779 @@
+$MOBILE_RESOLUTION: 900px;
+
+html {
+  --tak-header-height: 50px;
+  --tak-footer-height: 30px;
+  --tak-sidebar-compact-width: 50px;
+  --tak-sidebar-full-width: 240px;
+  --tak-layout-outlet-padding: 20px;
+}
+
+html {
+  --tak-body-color: rgb(0, 0, 0);
+  --tak-body-background-color: var(--mat-sys-background);
+  --tak-loader-double-bounce1: #fcc02e;
+  --tak-loader-double-bounce2: #03a9f4;
+  --tak-loader-overlay-backdrop-background-color: rgba(0, 0, 0, 0.048);
+  --tak-layout-hover-scrollbar-thumb-color: rgba(192, 192, 192, 0.562);
+  --tak-layout-scrollbar-thumb-background-color: #f1f4f6;
+  --tak-layout-container: rgb(241, 244, 246);
+  --tak-layout-overlay-backdrop-background-color: rgba(0, 0, 0, 0.32);
+  --tak-layout-scrollbar-thumb-background-color: #f1f4f6;
+  --tak-layout-light-color: #fff;
+  --tak-layout-dark-color: rgba(0, 0, 0, 0.87);
+  --tak-layout-opacity-dark-color: rgba(0, 0, 0, 0.12);
+  --tak-layout-hover-scrollbar-thumb-color: rgba(192, 192, 192, 0.562);
+  --tak-header-background-color: rgb(10, 161, 174);
+  --tak-header-container-box-shadow:
+    0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+    0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+  --tak-footer-background-color: rgb(10, 161, 174);
+  --tak-breadcrumb-color: rgb(8, 119, 129, 0.3);
+  --tak-breadcrumb-title-color: rgb(10, 161, 174);
+  --tak-breadcrumb-active-color: rgb(10, 161, 174);
+  --tak-sidebar-slide-button-knobs-background-color: rgb(10, 161, 174);
+  --tak-sidebar-slide-button-knobs-opacity-background-color: rgb(10, 161, 174, 0.3);
+  --tak-sidebar-slide-toggle-bar-background-color: rgba(0, 0, 0, 0.38);
+  --tak-sidebar-after-background-color: rgba(255, 255, 255, 0.95);
+  --tak-sidebar-background-color: rgb(255, 255, 255);
+  --tak-sidebar-branding-title-color: rgb(10, 161, 174);
+  --tak-sidebar-branding-subtitle-color: rgb(120, 203, 211);
+  --tak-sidebar-container-border-right: rgba(0, 0, 0, 0.12);
+  --tak-sidenav-scrollbar-thumb-hover-color: rgba(192, 192, 192, 0.862);
+  --tak-sidenav-hover-scrollbar-thumb-color: rgba(192, 192, 192, 0.562);
+  --tak-sidenav-link-active-background-color: rgba(218, 218, 218, 0.15);
+  --tak-sidenav-link-hover-background-color: rgba(226, 226, 226, 0.46);
+  --tak-sidenav-link-icon-color: rgb(50, 50, 50);
+  --tak-divider-border-top-dark-color: rgba(0, 0, 0, 0.12);
+  --tak-divider-border-top-light-color: rgba(214, 214, 214, 0.12);
+}
+
+[data-theme='dark'] {
+  --tak-body-color: rgb(255, 255, 255);
+  --tak-body-background-color: var(--mat-sys-background);
+  --tak-loader-overlay-backdrop-background-color: rgba(255, 255, 255, 0.048);
+  --tak-layout-container: rgb(13, 17, 23);
+  --tak-layout-scrollbar-thumb-background-color: #333947af;
+  --tak-layout-overlay-backdrop-background-color: rgba(73, 73, 73, 0.32);
+  --tak-layout-scrollbar-thumb-background-color: #333947af;
+  --tak-layout-light-color: #000;
+  --tak-layout-dark-color: #cecece;
+  --tak-layout-opacity-dark-color: rgba(255, 255, 255, 0.12);
+  --tak-header-background-color: rgb(1, 4, 9);
+  --tak-header-container-box-shadow: none;
+  --tak-footer-background-color: rgb(54, 57, 76);
+  --tak-sidebar-after-background-color: rgba(1, 4, 9, 0.95);
+  --tak-sidebar-background-color: rgb(1, 4, 9);
+  --tak-sidebar-slide-toggle-bar-background-color: rgba(255, 255, 255, 0.38);
+  --tak-sidebar-container-border-right: rgb(95, 95, 95, 0.4);
+  --tak-sidenav-scrollbar-thumb-hover-color: rgba(192, 192, 192, 0.862);
+  --tak-sidenav-hover-scrollbar-thumb-color: rgba(192, 192, 192, 0.562);
+  --tak-sidenav-link-active-background-color: rgba(218, 218, 218, 0.15);
+  --tak-sidenav-link-hover-background-color: rgba(226, 226, 226, 0.46);
+  --tak-sidenav-link-icon-color: rgb(50, 50, 50);
+  --tak-sidenav-link-icon-color: rgb(218, 218, 218);
+  --tak-breadcrumb-color: #d1d1d1;
+  --tak-breadcrumb-active-color: #ececec;
+  --tak-breadcrumb-title-color: #ececec;
+  --tak-divider-border-top-light-color: rgba(214, 214, 214, 0.12);
+  --tak-divider-border-top-dark-color: rgb(95, 95, 95, 0.4);
+}
+
+body {
+  overflow: hidden !important;
+}
+
+html {
+  background-color: var(--tak-body-background-color);
+  color: var(--tak-body-color);
+}
+
+.tak-layout {
+  margin: 0;
+  overflow: auto;
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  }
+  &__loader-hidden {
+    display: none !important;
+  }
+}
+
+.tak__txt-dec-none {
+  text-decoration: none;
+}
+.tak__min-wdh-32 {
+  min-width: 32px;
+}
+.tak__admin-layout__not-exist {
+  display: none !important;
+}
+
+.tak-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0;
+  margin-bottom: 1rem;
+  list-style: none;
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  color: var(--tak-breadcrumb-color);
+  font-weight: 600;
+  margin: 0;
+  &-pagetitle {
+    margin-bottom: 10px;
+    & h1 {
+      font-size: 20px;
+      margin-bottom: 0;
+      font-weight: 600;
+      font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: var(--tak-breadcrumb-title-color);
+      margin-top: 0px;
+    }
+  }
+  &-item {
+    + .tak-breadcrumb-item::before {
+      float: left;
+
+      padding-right: 0.5rem;
+      content: '/';
+    }
+  }
+  & .tak-breadcrumb-item::before {
+    color: var(--tak-breadcrumb-color);
+  }
+  & .active {
+    color: var(--tak-breadcrumb-active-color);
+    font-weight: 600;
+    margin-left: 10px;
+  }
+  &-hidden {
+    display: none !important;
+  }
+}
+.tak-layout-expansion-panel-container {
+  background-color: transparent;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.tak-layout-expansion-panel {
+  &-body {
+    background-color: transparent;
+    transition: max-height 0.2s ease-out;
+    text-align: justify;
+    overflow: hidden;
+    max-height: 0;
+  }
+  &-container {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  &-header {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    min-height: 40px;
+    min-width: 30px !important;
+    width: 100%;
+    padding: 0 5px 0 1px;
+    //white-space: nowrap;
+    padding: 3px 32px 3px 10px;
+    background: transparent;
+    font-weight: bolder;
+    align-items: center;
+    text-align: justify;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    color: var(--tak-layout-dark-color);
+    /*  &.is-module {
+      opacity: 1;
+    } */
+    @media only screen and (min-width: calc($MOBILE_RESOLUTION - 1px)) {
+      &:not(.is-module):hover {
+        background-color: rgba(226, 226, 226, 0.46) !important;
+        transition: background ease 0.3s;
+      }
+    }
+    &:not(.is-module)::after {
+      color: rgb(182, 182, 182) !important;
+      margin-right: 3px;
+    }
+    &:not(.is-module):not(.is-link)::after {
+      font-family: Roboto, 'Helvetica Neue', sans-serif;
+      transition: transform 0.3s ease;
+      font-size: 18px !important;
+      position: absolute;
+      content: '\203A';
+      right: 1rem;
+    }
+    &:not(.is-module):not(.is-link).active::after {
+      transition: transform 0.3s ease;
+      transform: rotate(90deg);
+    }
+  }
+}
+.tak {
+  &__footer {
+    width: 100%;
+    border-top: 1px solid var(--tak-divider-border-top-dark-color);
+    height: var(--tak-footer-height);
+    color: var(--tak-layout-dark-color);
+    display: flex;
+  }
+}
+[tak-custom-footer] {
+  width: 100%;
+}
+$TOGGLE_SBAR_BTN_CONTINR_WIDTH: 40px;
+
+.tak {
+  &__header {
+    width: 100%;
+    background-color: var(--tak-header-background-color);
+    height: var(--tak-header-height);
+    color: var(--tak-layout-dark-color);
+    display: flex;
+    &__toggle-sbar-btn {
+      &__container {
+        width: $TOGGLE_SBAR_BTN_CONTINR_WIDTH;
+        height: var(--tak-header-height);
+        align-items: center;
+        display: flex;
+        & > button {
+          background-color: transparent;
+          border: 1px solid transparent;
+          color: inherit;
+        }
+      }
+      @media (min-width: $MOBILE_RESOLUTION) {
+        &__container {
+          display: block;
+          align-items: center;
+          display: flex;
+        }
+      }
+    }
+    &__custom {
+      &__container {
+        width: 100%;
+        align-items: center;
+        display: flex;
+      }
+      @media (max-width: calc($MOBILE_RESOLUTION - 1px)) {
+        &__container {
+          width: calc(100% - $TOGGLE_SBAR_BTN_CONTINR_WIDTH);
+        }
+      }
+    }
+  }
+}
+[tak-custom-header] {
+  width: 100%;
+}
+.tak {
+  &__container {
+    margin-left: var(--tak-sidebar-compact-width);
+    transition: margin-left ease 0.3s;
+  }
+  &__outlet {
+    min-height: calc(
+      (100vh - 1px) -
+        (
+          var(--tak-header-height) + var(--tak-footer-height) +
+            (var(--tak-layout-outlet-padding) * 2)
+        )
+    );
+    color: var(--tak-layout-dark-color);
+    padding: var(--tak-layout-outlet-padding);
+  }
+  &__scroll {
+    height: calc(100vh - var(--tak-header-height));
+    overflow-y: overlay;
+    color: transparent;
+    overflow-x: hidden;
+    @media only screen and (min-width: calc($MOBILE_RESOLUTION)) {
+      &::-webkit-scrollbar {
+        background-color: var(--tak-layout-scrollbar-thumb-background-color);
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+        color: var(--tak-layout-hover-scrollbar-thumb-color);
+        box-shadow: inset 0 0 0 5px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+.tak__header-container {
+  box-shadow: var(--tak-header-container-box-shadow);
+}
+.tak__layout__container {
+  background-color: var(--tak-layout-container);
+}
+.main-content-wrap {
+  height: calc(100vh - var(--tak-header-height));
+  overflow: auto !important;
+  flex-direction: column;
+  position: relative;
+  display: flex;
+  float: right;
+}
+.tak__sidebar {
+  &__container {
+    border-right-color: var(--tak-sidebar-container-border-right);
+    background-color: var(--tak-sidebar-background-color);
+    border-right-style: solid;
+    border-right-width: 1px;
+    min-height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+  }
+  &__branding {
+    background-color: var(--tak-sidebar-background-color);
+    height: var(--tak-header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    font-weight: bolder;
+    font-size: 12.5px;
+    font-family: Arial, Helvetica, sans-serif;
+    &__container {
+      width: calc(100% - 90px);
+      margin: 0 5px;
+    }
+    &__logo {
+      width: 24px;
+    }
+    &__toggle {
+      display: none !important;
+    }
+    &__title,
+    & > div > tak-slide-toggle {
+      margin-left: 6px;
+    }
+    &__title {
+      color: var(--tak-sidebar-branding-title-color);
+      font-size: 12.5px;
+      text-align: center;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    &__subtitle {
+      color: var(--tak-sidebar-branding-subtitle-color);
+      font-size: 10px;
+      margin: 0;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  &__content {
+    position: fixed;
+    min-height: 100vh;
+    &::after {
+      background-color: var(--tak-sidebar-after-background-color);
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      content: '';
+      left: 0;
+      top: 0;
+    }
+  }
+  &__content {
+    overflow: hidden;
+  }
+  &__divider {
+    border-top-color: var(--tak-divider-border-top-dark-color);
+    border-top-style: solid;
+    border-top-width: 1px;
+    display: block;
+    padding: 5px;
+    margin: 0;
+    &.no-padding {
+      padding: 0;
+    }
+  }
+}
+
+.tak__sidebar__mobile-toggle-sidebar-button {
+  background-color: var(--tak-layout-overlay-backdrop-background-color);
+  height: calc(100vh);
+  width: calc(100vw);
+  position: fixed;
+  border: none;
+  cursor: default;
+  display: none;
+  z-index: 998;
+  float: left;
+}
+.tak__sidebar__branding__toggle {
+  .toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    width: 200px;
+    height: 140px;
+    box-sizing: border-box;
+  }
+
+  .button-cover,
+  .knobs,
+  .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .button {
+    position: relative;
+    top: 50%;
+    width: 32px;
+    height: 17px;
+    margin: 0 auto 0 auto;
+    overflow: hidden;
+  }
+
+  .button.r,
+  .button.r .layer {
+    border-radius: 100px;
+  }
+
+  .button.b2 {
+    border-radius: 2px;
+  }
+
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  .knobs {
+    z-index: 2;
+  }
+
+  .layer {
+    width: 100%;
+    background-color: var(--tak-sidebar-slide-toggle-bar-background-color);
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+
+  /* Button 1 */
+  #button-1 .knobs:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 1px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 6px 1px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  }
+
+  #button-1 .checkbox:checked + .knobs:before {
+    // content: 'NO';
+    left: 18px;
+    background-color: var(--tak-sidebar-slide-button-knobs-background-color);
+  }
+
+  #button-1 .checkbox:checked ~ .layer {
+    background-color: var(--tak-sidebar-slide-button-knobs-opacity-background-color);
+  }
+
+  #button-1 .knobs,
+  #button-1 .knobs:before,
+  #button-1 .layer {
+    transition: 0.3s ease all;
+  }
+}
+$SNAV_CNTNR_PDNG_BTM: 10px;
+$SNAV_CNTNR_PDNG_TOP: 10px;
+.tak__sidenav {
+  &__container {
+    padding-top: $SNAV_CNTNR_PDNG_TOP;
+    padding-bottom: $SNAV_CNTNR_PDNG_BTM;
+    height: calc(
+      100vh - (var(--tak-header-height) + $SNAV_CNTNR_PDNG_BTM + $SNAV_CNTNR_PDNG_TOP + 1px)
+    );
+    transition: color ease 0.2s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: transparent;
+    .icon-link:not(.is-module) {
+      display: none;
+    }
+    @media only screen and (min-width: calc($MOBILE_RESOLUTION - 1px)) {
+      &::-webkit-scrollbar {
+        background: transparent;
+        width: 8px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border: 1px solid transparent;
+        background-clip: padding-box;
+        box-shadow: inset 0 0 0 5px;
+        border-radius: 10px;
+        &:hover {
+          color: var(--tak-sidenav-scrollbar-thumb-hover-color);
+        }
+      }
+      .icon-link:not(.is-module) {
+        display: block;
+      }
+    }
+    &:hover {
+      transition: color ease 0.2s;
+      color: var(--tak-sidenav-hover-scrollbar-thumb-color);
+    }
+  }
+  &__accordion {
+    &__link-name {
+      margin-left: 5px;
+    }
+    &__link-button {
+      color: var(--tak-layout-dark-color);
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      min-height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      text-align: justify;
+      @media only screen and (min-width: calc($MOBILE_RESOLUTION - 1px)) {
+        &:hover {
+          background-color: var(--tak-sidenav-link-hover-background-color);
+          transition: background-color ease 0.3s;
+        }
+      }
+      & > span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 10px;
+        margin-left: 15px;
+        //white-space: nowrap;
+      }
+    }
+  }
+}
+.is-module.tak-layout-expansion-panel-header {
+  color: gray;
+}
+/***********************************************/
+/******************** FULL *********************/
+/***********************************************/
+.tak__layout__container.full {
+  .tak__sidebar {
+    &__container {
+      width: var(--tak-sidebar-full-width);
+      transition: width ease 0.3s;
+      & > .tak__sidebar__content {
+        width: var(--tak-sidebar-full-width);
+        transition: width ease 0.3s;
+      }
+    }
+  }
+  @media (min-width: $MOBILE_RESOLUTION) {
+    .tak__container.sidebar-fixed {
+      margin-left: 240px;
+      transition: margin-left ease 0.3s;
+    }
+  }
+}
+/***********************************************/
+/**************** MOBILE FULL ******************/
+/***********************************************/
+.tak__layout__container.mobile.full {
+  .tak__sidebar {
+    &__container {
+      width: var(--tak-sidebar-full-width);
+      transition: width ease 0.3s;
+      & > .tak__sidebar__content {
+        width: var(--tak-sidebar-full-width);
+        transition: width ease 0.3s;
+      }
+    }
+  }
+  @media (max-width: calc($MOBILE_RESOLUTION - 1px)) {
+    .tak__sidebar__mobile-toggle-sidebar-button {
+      display: block;
+    }
+  }
+}
+
+/***********************************************/
+/**************** EXPAND FULL ******************/
+/***********************************************/
+
+.tak__layout__container.expand.full {
+  .tak__sidebar {
+    &__container {
+      width: var(--tak-sidebar-full-width);
+      transition: width ease 0.3s;
+      & > .tak__sidebar__content {
+        width: var(--tak-sidebar-full-width);
+        transition: width ease 0.3s;
+      }
+    }
+  }
+  @media (min-width: $MOBILE_RESOLUTION) {
+    .tak__container.sidebar-fixed {
+      margin-left: 240px;
+      transition: margin-left ease 0.3s;
+    }
+  }
+}
+
+/***********************************************/
+/****************** COMPACT ********************/
+/***********************************************/
+.tak__layout__container.compact {
+  .tak__sidebar {
+    &__container {
+      width: var(--tak-sidebar-compact-width);
+      transition: width ease 0.3s;
+      & > .tak__sidebar__content {
+        width: var(--tak-sidebar-compact-width);
+        transition: width ease 0.3s;
+      }
+    }
+    &__branding {
+      &__container {
+        display: none;
+      }
+      &__toggle {
+        &__container {
+          display: none;
+        }
+      }
+    }
+  }
+  .tak__sidenav {
+    &__link-name,
+    &__accordion__link-container {
+      display: none;
+    }
+  }
+  .tak-layout-expansion-panel-header {
+    &::after {
+      display: none;
+    }
+  }
+}
+/***********************************************/
+/************** MOBILE COMPACT *****************/
+/***********************************************/
+.tak__layout__container.mobile {
+  .tak__container {
+    margin-left: 0px;
+  }
+  .tak__sidebar {
+    &__container {
+      width: 0px;
+      margin-left: -1px;
+      & > .tak__sidebar__content {
+        width: 0px;
+        margin-left: -1px;
+        transition: margin-left ease 0.3s;
+      }
+    }
+  }
+}
+
+/***********************************************/
+/************ HIDE ON NO MOBILE ****************/
+/***********************************************/
+@media (min-width: $MOBILE_RESOLUTION) {
+  .tak__sidebar__mobile-toggle-sidebar-button,
+  .tak__header__toggle-sbar-btn {
+    display: none !important;
+  }
+  .tak__sidebar__branding__toggle {
+    display: block !important;
+  }
+}
+
+/***********************************************/
+/******* EXPAND COMPACT *********/
+/***********************************************/
+
+.tak__layout__container.expand {
+  .tak__container {
+    margin-left: 0px;
+    transition: margin-left ease 0.3s;
+  }
+  .tak__sidebar {
+    &__container {
+      width: 0px;
+      margin-left: -1px;
+      & > .tak__sidebar__content {
+        width: 0px;
+        margin-left: -1px;
+        transition: width ease 0.3s;
+      }
+    }
+    &__branding {
+      &__logo {
+        margin-left: 10px;
+      }
+      &__title {
+        text-align: left;
+        width: 200px;
+      }
+      &__toggle__container {
+        display: none !important;
+      }
+    }
+  }
+}
+
+/***********************************************/
+/******* DISABLE TRANSITION ON MOBILES *********/
+/***********************************************/
+.tak__layout__container.mobile.full {
+  .tak__sidebar {
+    &__container {
+      transition: width ease 0.05s !important;
+      & > .tak__sidebar__content {
+        transition: width ease 0.05s !important;
+      }
+    }
+  }
+}
+.tak__layout__container.mobile {
+  .tak__sidebar {
+    &__container {
+      transition: width ease 0.05s !important;
+      & > .tak__sidebar__content {
+        transition: width ease 0.05s !important;
+      }
+    }
+  }
+}
+.tak__sidenav__accordion__link-button > span,
+.tak-layout-expansion-panel-header {
+  text-align: left;
+}

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   EventEmitter,
   Component,
@@ -8,7 +9,6 @@ import {
   Output,
   Input,
   Self,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -28,13 +28,13 @@ import { MatIconModule } from '@toshida/material/icon';
 
 @Component({
   imports: [
-    TsdErrorComponent,
     FormsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    TsdErrorComponent,
+    MatFormFieldModule,
+    ReactiveFormsModule,
   ],
   selector: 'tsd-text-field',
   templateUrl: './component.html',

@@ -13,6 +13,9 @@
 }
 
 :root {
+  --tsd-form-field-hint-color: rgb(128, 128, 128);
+  --tsd-form-field-error-color: rgb(255, 0, 0);
+  --tsd-option-span-extra: gray;
   --tsd-paginator-container-background-color: rgb(255, 255, 255);
   --tsd-table-background-color: rgb(255, 255, 255);
   --tsd-table-header-color: rgb(255, 255, 255);
@@ -27,12 +30,18 @@
   --tsd-table-selectable-row-hover: rgba(204, 204, 204, 0.4);
   --tsd-table-not-selectable-row: #f5b5c0c4;
   --tsd-table-not-selectable-row-hover: #f5aab7ea;
+  --tsd-snackbar--notification-color: rgb(39, 39, 39);
+  --tsd-snackbar--notification-background-color: var(--mat-sys-primary-fixed-dim);
+  --tsd-snackbar--notification-button-color: var(--mat-sys-primary);
+  --tsd-snackbar--danger-color: rgb(39, 39, 39);
+  --tsd-snackbar--danger-background-color: rgba(255, 156, 156, 0.85);
+  --tsd-snackbar--danger-action-button-color: #fd2626;
+  --tsd-snackbar--success-color: rgb(39, 39, 39);
+  --tsd-snackbar--success-background-color: rgba(223, 246, 234, 0.925);
+  --tsd-snackbar--success-action-button-color: #004646;
 }
 
 [data-theme='dark'] {
-  --tsd-form-field-hint-color: rgb(128, 128, 128);
-  --tsd-form-field-error-color: rgb(255, 0, 0);
-  --tsd-option-span-extra: gray;
   --tsd-paginator-container-background-color: rgb(13, 17, 23);
   --tsd-table-background-color: var(--mat-sys-background);
   --tsd-table-container-box-shadow: none;
@@ -44,15 +53,6 @@
   --tsd-table-selectable-hover-color: rgba(255, 255, 255, 0.12);
   --tsd-table-not-selectable-row: #c45366c4;
   --tsd-table-not-selectable-row-hover: #cc3c54ea;
-  --tsd-snackbar--notification-color: rgb(39, 39, 39);
-  --tsd-snackbar--notification-background-color: var(--mat-sys-primary-fixed-dim);
-  --tsd-snackbar--notification-button-color: var(--mat-sys-primary);
-  --tsd-snackbar--danger-color: rgb(39, 39, 39);
-  --tsd-snackbar--danger-background-color: rgba(255, 156, 156, 0.85);
-  --tsd-snackbar--danger-action-button-color: #fd2626;
-  --tsd-snackbar--success-color: rgb(39, 39, 39);
-  --tsd-snackbar--success-background-color: rgba(223, 246, 234, 0.925);
-  --tsd-snackbar--success-action-button-color: #004646;
 }
 
 .cdk-global-scrollblock {

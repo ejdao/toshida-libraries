@@ -26,7 +26,12 @@ import { MatButtonModule } from '@toshida/material/button';
 import { MatInputModule } from '@toshida/material/input';
 import { MatIconModule } from '@toshida/material/icon';
 import { MatMenuModule } from '@toshida/material/menu';
-import { TSD_DEFAULT_APPEARANCE_FORM, TsdAutocompleteFieldType } from '../common';
+import {
+  TSD_DEFAULT_APPEARANCE_FORM,
+  TsdAutocompleteFieldType,
+  TsdConfigAutoCompleteFieldI,
+  TsdConfigFieldI,
+} from '../common';
 import { TsdErrorComponent } from '../error/component';
 
 @Component({
@@ -46,34 +51,31 @@ import { TsdErrorComponent } from '../error/component';
   templateUrl: './component.html',
 })
 export class TsdSelectFieldComponent implements OnInit, OnDestroy, ControlValueAccessor {
-  @Input() autocomplete: TsdAutocompleteFieldType = 'off';
-  @Input() appearance: MatFormFieldAppearance = TSD_DEFAULT_APPEARANCE_FORM;
-  @Input() color: ThemePalette = 'primary';
-  @Input() suggestions: any[] = [];
+  @Input() config: TsdConfigAutoCompleteFieldI = {};
   @Input() disabled = false;
-
-  @Input() type: 'menu' | 'select' = 'select';
-  @Input() tooltip = '';
-  @Input() icon = 'filter_list';
-
-  @Input() option = 'option';
-  @Input() extraInfo = '';
-
-  @Input() hasDefaultValue = false;
-
-  @Output() onSelect = new EventEmitter<any>();
+  // @Input() placeholder = '';
 
   public onChangeFn = (_: any) => {};
   public onTouchFn = (_: any) => {};
 
-  public isInvalid = false;
-  public isSubmitted = false;
+  readonly defaultAppearance = TSD_DEFAULT_APPEARANCE_FORM;
+
   private _unsubscribe$ = new Subject<void>();
+  public isSubmitted = false;
+  public isInvalid = false;
+
+  // Exclusivos
+  @Input() suggestions: any[] = [];
+  @Input() type: 'menu' | 'select' = 'select';
+  @Input() tooltip = '';
+  @Input() icon = 'filter_list';
+
+  @Output() onSelect = new EventEmitter<any>();
 
   constructor(
+    private _cd: ChangeDetectorRef,
     @Self() @Optional() private _ngControl: NgControl,
     @Optional() private _formGroupDirective: FormGroupDirective,
-    private _cd: ChangeDetectorRef,
   ) {
     if (_ngControl) this._ngControl.valueAccessor = this;
     if (_formGroupDirective) {
@@ -85,7 +87,10 @@ export class TsdSelectFieldComponent implements OnInit, OnDestroy, ControlValueA
   }
 
   public ngOnInit(): void {
-    if (this.suggestions.length && this.hasDefaultValue) {
+    if (!this.config.value) this.config.value = 'nombre';
+    if (this.config.hasDefaultValue === undefined) this.config.hasDefaultValue = false;
+
+    if (this.suggestions.length && this.config.hasDefaultValue) {
       this._ngControl.control?.setValue(this.suggestions[0]);
     }
 

@@ -1,0 +1,36 @@
+<button class="tak__sidebar__mobile-toggle-sidebar-button" (click)="onToggleSidebar()"></button>
+<div class="tak__sidebar__container">
+  <div class="tak__sidebar__branding">
+    <img class="tak__sidebar__branding__logo" [src]="appIcon" />
+    <div class="tak__sidebar__branding__container" style="margin: 0 5px 0 5px">
+      <h1 class="tak__sidebar__branding__title">{{ appTitle }}</h1>
+      <h2 class="tak__sidebar__branding__subtitle">{{ appSubtitle }}</h2>
+    </div>
+    <div class="tak__sidebar__branding__toggle__container">
+      <div class="tak__sidebar__branding__toggle">
+        <div class="button r" id="button-1">
+          <input
+            #checkbox
+            type="checkbox"
+            class="checkbox"
+            [checked]="isCompact"
+            (change)="onBlockSidebar()"
+          />
+          <div class="knobs"></div>
+          <div class="layer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tak__sidebar__divider" style="padding: 0"></div>
+  <div class="tak__sidebar__content">
+    <tak-sidenav
+      [mdWidth]="mdWidth"
+      [navigation]="navigation"
+      [authorities]="authorities"
+      [context]="context"
+      [accordionInCollections]="accordionInCollections"
+      [disableHiddenCollections]="disableHiddenCollections"
+    ></tak-sidenav>
+  </div>
+</div>

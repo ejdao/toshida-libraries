@@ -62,14 +62,14 @@
 }
 
 .tsd-default-login-card {
-  background: #ffffff;
+  background: var(--mat-sys-background);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .tsd-default-login-title {
-  color: #1a202c;
+  color: inherit;
 }
 
 .tsd-default-login-subtitle {
-  color: #718096;
+  color: gray;
 }

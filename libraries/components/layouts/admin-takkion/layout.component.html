@@ -1,0 +1,55 @@
+<div class="tak__layout__container {{ isSidebarCompact ? 'compact' : 'full' }}">
+  <tak-sidebar
+    [isCompact]="isSidebarCompact"
+    [isMd]="isMd"
+    [navigation]="navigation"
+    [authorities]="authorities"
+    [appIcon]="appIcon"
+    [appTitle]="appSidebarTitle"
+    [appSubtitle]="appSidebarSubtitle"
+    [isToggleShow]="isDinamicSidebar"
+    [mdWidth]="mdWidth"
+    [context]="context"
+    [accordionInCollections]="accordionInCollections"
+    [disableHiddenCollections]="disableHiddenCollections"
+    (mouseenter)="isDinamicSidebar ? sidebarMouseEnter() : ''"
+    (mouseleave)="isDinamicSidebar ? sidebarMouseLeave() : ''"
+    (blockSidebar)="onBlockSidebar($event)"
+    (toggleSidebar)="toggleSidebar($event)"
+  ></tak-sidebar>
+  <div class="tak__container">
+    <div class="tak__header-container">
+      <tak-header
+        (toggleSidebar)="toggleSidebar($event)"
+        [mdWidth]="mdWidth"
+        [isActionButton]="isDinamicSidebar"
+      >
+        <ng-content tak-custom-header select="[tak-custom-header]"></ng-content>
+      </tak-header>
+    </div>
+    <div class="tak__scroll" #scrollLayout>
+      <div class="tak__content">
+        <!-- View Loader -->
+        @if (isModuleLoading) {
+          <div class="tsd-view-loader" style="position: fixed">
+            <div class="tsd-spinner">
+              <div class="tsd-double-bounce1"></div>
+              <div class="tsd-double-bounce2"></div>
+            </div>
+          </div>
+        }
+        <div class="tak__outlet">
+          <tak-breadcrumb [class.tak-breadcrumb-hidden]="!includeBreadcrumbs"></tak-breadcrumb>
+          <div>
+            <ng-content></ng-content>
+          </div>
+        </div>
+        @if (hasFooter) {
+          <tak-footer>
+            <ng-content tak-custom-footer select="[tak-custom-footer]"></ng-content>
+          </tak-footer>
+        }
+      </div>
+    </div>
+  </div>
+</div>

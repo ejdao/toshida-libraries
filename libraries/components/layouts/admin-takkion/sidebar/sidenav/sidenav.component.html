@@ -1,0 +1,163 @@
+<div class="tak__sidenav__container">
+  <tak-layout-accordion>
+    @for (item of navigation; track item; let i = $index) {
+      <div>
+        <!-- Links -->
+        @if (item.type === 'link') {
+          <a
+            class="tak__txt-dec-none"
+            [class.tak__admin-layout__not-exist]="
+              ([authorities, item.disableOnContexts!]
+                | validateAccess: [context, item.authorities!]) || item.forceDisabledContent
+            "
+            routerLink="{{ item.url }}"
+            routerLinkActive="tak__snav-link-active"
+            (click)="onCloseSidebar()"
+          >
+            <tak-layout-expansion-panel-header class="tak__sidenav__accordion__header is-link">
+              <span class="material-icons tak__min-wdh-32 icon-link">{{ item.icon }}</span>
+              <span class="tak__sidenav__link-name accordion">{{ item.name }}</span>
+            </tak-layout-expansion-panel-header>
+          </a>
+        }
+        <!-- Dropdowns -->
+        @if (item.type === 'dropdown') {
+          <tak-layout-expansion-panel
+            [class.tak__admin-layout__not-exist]="
+              ([authorities, item.disableOnContexts!]
+                | validateAccess: [context, item.authorities!]) || item.forceDisabledContent
+            "
+          >
+            <tak-layout-expansion-panel-header class="tak__sidenav__accordion__header">
+              <span class="material-icons tak__min-wdh-32 icon-link">{{ item.icon }}</span>
+              <span class="tak__sidenav__link-name accordion">{{ item.name }}</span>
+            </tak-layout-expansion-panel-header>
+            @for (link of item.dropdownLinks; track link) {
+              <div
+                [class.tak__admin-layout__not-exist]="
+                  ([authorities, link.disableOnContexts!]
+                    | validateAccess: [context, link.authorities!]) || link.forceDisabledContent
+                "
+              >
+                <div takRipple class="tak__sidenav__accordion__link-container">
+                  <a
+                    class="tak__txt-dec-none"
+                    routerLink="{{
+                      link.urlIsNotAutoCompleted ? link.url : item.url + '/' + link.url
+                    }}"
+                    routerLinkActive="tak__snav-link-active"
+                    (click)="onCloseSidebar()"
+                  >
+                    <button class="tak__sidenav__accordion__link-button">
+                      <span>
+                        {{ link.name }}
+                      </span>
+                    </button>
+                  </a>
+                </div>
+              </div>
+            }
+          </tak-layout-expansion-panel>
+        }
+        <!-- Collections -->
+        @if (item.type === 'collection') {
+          <section>
+            <div
+              [class.tak__admin-layout__not-exist]="
+                ([authorities, item.disableOnContexts!]
+                  | validateAccess: [context, item.authorities!]) || item.forceDisabledContent
+              "
+            >
+              <tak-layout-expansion-panel-header
+                (click)="toggleModule(i)"
+                class="tak__sidenav__accordion__header is-module"
+              >
+                <span class="material-icons tak__min-wdh-32 icon-link is-module">
+                  {{
+                    !disableHiddenCollections
+                      ? item.showCollectionContent
+                        ? 'visibility'
+                        : 'visibility_off'
+                      : 'radio_button_checked'
+                  }}
+                </span>
+                <span class="tak__sidenav__link-name accordion">{{ item.name }}</span>
+              </tak-layout-expansion-panel-header>
+              <div
+                class="tak-divider custom"
+                [class.tak__admin-layout__not-exist]="
+                  ([authorities, item.disableOnContexts!]
+                    | validateAccess: [context, item.authorities!]) || item.forceDisabledContent
+                "
+              ></div>
+              @for (el of item.objects; track el) {
+                <div [hidden]="!item.showCollectionContent">
+                  <a
+                    class="tak__txt-dec-none"
+                    [class.tak__admin-layout__not-exist]="
+                      ([authorities, el.disableOnContexts!]
+                        | validateAccess: [context, el.authorities!]) || el.forceDisabledContent
+                    "
+                    routerLink="{{ !el.urlIsNotAutoCompleted ? item.url + '/' + el.url : el.url }}"
+                    routerLinkActive="tak__snav-link-active"
+                    (click)="onCloseSidebar()"
+                  >
+                    @if (el.type === 'link') {
+                      <tak-layout-expansion-panel-header
+                        class="tak__sidenav__accordion__header is-link"
+                      >
+                        <span class="material-icons tak__min-wdh-32 icon-link">{{ el.icon }}</span>
+                        <span class="tak__sidenav__link-name accordion">{{ el.name }}</span>
+                      </tak-layout-expansion-panel-header>
+                    }
+                  </a>
+                  @if (el.type === 'dropdown') {
+                    <tak-layout-expansion-panel
+                      [class.tak__admin-layout__not-exist]="
+                        ([authorities, el.disableOnContexts!]
+                          | validateAccess: [context, el.authorities!]) || el.forceDisabledContent
+                      "
+                    >
+                      <tak-layout-expansion-panel-header class="tak__sidenav__accordion__header">
+                        <span class="material-icons tak__min-wdh-32 icon-link">{{ el.icon }}</span>
+                        <span class="tak__sidenav__link-name accordion">{{ el.name }}</span>
+                      </tak-layout-expansion-panel-header>
+                      @for (link of el.dropdownLinks; track link) {
+                        <div
+                          [class.tak__admin-layout__not-exist]="
+                            ([authorities, link.disableOnContexts!]
+                              | validateAccess: [context, link.authorities!]) ||
+                            link.forceDisabledContent
+                          "
+                        >
+                          <div takRipple class="tak__sidenav__accordion__link-container">
+                            <a
+                              class="tak__txt-dec-none"
+                              routerLink="{{
+                                !link.urlIsNotAutoCompleted
+                                  ? item.url + '/' + el.url + '/' + link.url
+                                  : link.url
+                              }}"
+                              routerLinkActive="tak__snav-link-active"
+                              (click)="onCloseSidebar()"
+                            >
+                              <button class="tak__sidenav__accordion__link-button">
+                                <span>
+                                  {{ link.name }}
+                                </span>
+                              </button>
+                            </a>
+                          </div>
+                        </div>
+                      }
+                    </tak-layout-expansion-panel>
+                  }
+                </div>
+              }
+            </div>
+          </section>
+        }
+      </div>
+    }
+  </tak-layout-accordion>
+</div>

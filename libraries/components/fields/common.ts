@@ -39,4 +39,5 @@ export interface TsdConfigAutoCompleteFieldI extends TsdConfigFieldI {
   complement?: string;
   value?: string;
   justSearchOneTime?: boolean;
+  hasDefaultValue?: boolean;
 }

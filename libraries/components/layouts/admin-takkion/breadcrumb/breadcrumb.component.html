@@ -1,0 +1,13 @@
+<div class="tak-breadcrumb-pagetitle">
+  <h1>{{ title }}</h1>
+  <nav>
+    <ol class="tak-breadcrumb">
+      <li class="tak-breadcrumb-item">
+        <span>{{ base }}</span>
+      </li>
+      @if (!singleRoute) {
+        <li class="tak-breadcrumb-item active">{{ title }}</li>
+      }
+    </ol>
+  </nav>
+</div>

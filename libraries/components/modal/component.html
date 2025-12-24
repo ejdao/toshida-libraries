@@ -19,18 +19,20 @@
 <mat-divider></mat-divider>
 <mat-dialog-actions align="end">
   @if (!isAlert) {
-    <button mat-button color="accent" (click)="onConfirm()">
-      {{ confirmButton }}
-    </button>
-  }
-  @if (!isAlert) {
-    <button mat-button color="warn" (click)="onClose()" cdkFocusInitial>
+    <button mat-button color="warn" (click)="onClose()">
       {{ deniedButton }}
     </button>
   }
+
   @if (isAlert) {
-    <button mat-button color="accent" (click)="onClose()" style="float: right" cdkFocusInitial>
+    <button mat-button color="accent" (click)="onClose()" style="float: right">
       {{ okButton }}
+    </button>
+  }
+
+  @if (!isAlert) {
+    <button mat-button color="accent" (click)="onConfirm()" cdkFocusInitial>
+      {{ confirmButton }}
     </button>
   }
 </mat-dialog-actions>
