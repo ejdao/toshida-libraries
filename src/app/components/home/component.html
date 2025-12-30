@@ -1,1 +1,15 @@
-<p>home works</p>
+<div class="container">
+  <div class="row">
+    <div class="col-bt-6">
+      <tsd-general-field [config]="{ isMoney: true }" [formControl]="texto">
+        Textarea
+      </tsd-general-field>
+    </div>
+
+    <div class="col-bt-6">
+      <tsd-date-range-field [config]="{ notInput: true }" [start]="inicio" [end]="fin">
+        Date
+      </tsd-date-range-field>
+    </div>
+  </div>
+</div>
