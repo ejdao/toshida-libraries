@@ -1,52 +1,51 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
-  EventEmitter,
-  Component,
+  AfterViewInit,
   OnDestroy,
+  Component,
   Optional,
   OnInit,
-  Output,
   Input,
   Self,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  ReactiveFormsModule,
-  FormGroupDirective,
-  FormsModule,
-  FormControl,
-  NgControl,
-} from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
-import { TsdErrorComponent } from '../error/component';
-import { TSD_DEFAULT_APPEARANCE_FORM, TsdConfigFieldI } from '../common';
-import { MatFormFieldModule } from '@toshida/material/form-field';
-import { MatButtonModule } from '@toshida/material/button';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl } from '@angular/forms';
+import { TSD_DEFAULT_APPEARANCE_FORM, TsdConfigDateFieldI } from '../common';
+import { MatFormField, MatLabel } from '@toshida/material/form-field';
+import { MatDatepickerIntl, MatDatepickerModule } from '@toshida/material/datepicker';
 import { MatInputModule } from '@toshida/material/input';
-import { MatIconModule } from '@toshida/material/icon';
+import { TsdErrorComponent } from '../error/component';
+import {
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+  provideNativeDateAdapter,
+} from '@toshida/material/core';
+import { getSpanishMatDatePickerIntl } from '../translations';
 
 @Component({
   imports: [
-    FormsModule,
-    MatIconModule,
+    MatLabel,
+    MatFormField,
     MatInputModule,
-    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     TsdErrorComponent,
-    MatFormFieldModule,
-    ReactiveFormsModule,
   ],
-  selector: 'tsd-text-field',
+  providers: [
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: MatDatepickerIntl, useValue: getSpanishMatDatePickerIntl() },
+  ],
+  selector: 'tsd-date-field',
   templateUrl: './component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAccessor {
-  @Input() config: TsdConfigFieldI = {};
+export class TsdDateFieldComponent
+  implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor
+{
+  @Input() config: TsdConfigDateFieldI = {};
   @Input() disabled = false;
   @Input() placeholder = '';
-
-  @Output() onExecuteAction = new EventEmitter();
-  @Output() onKeyUp = new EventEmitter();
 
   public onChangeFn = (_: any) => {};
   public onTouchFn = (_: any) => {};
@@ -56,13 +55,12 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
   private _unsubscribe$ = new Subject<void>();
   private _isSubmitted = false;
   private _isInvalid = false;
-  private _decrypted = false;
   private _required = false;
   private _value = '';
 
   constructor(
-    @Optional() private _formGroupDirective: FormGroupDirective,
     @Self() @Optional() private _ngControl: NgControl,
+    @Optional() private _formGroupDirective: FormGroupDirective,
     private _cd: ChangeDetectorRef,
   ) {
     if (_ngControl) this._ngControl.valueAccessor = this;
@@ -76,30 +74,31 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
 
   public ngOnInit(): void {
     const form: any = this.control;
-
     if (form?._rawValidators) {
-      form._rawValidators.forEach((r: any) => {
-        if (r.name.includes('required')) this._required = true;
+      form._rawValidators.map((r: any) => {
+        if (r.name.includes('required')) {
+          this._required = true;
+        }
       });
     }
-
     if (this.disabled) this.control.disable();
   }
 
-  /** @implemented */
+  public ngAfterViewInit(): void {
+    const isValidDate = Date.parse(this.control.value);
+    if (isNaN(isValidDate)) this.control.setValue(null);
+    else this.control.setValue(new Date(this.control.value));
+  }
+
   public writeValue(value: string): void {
     if (value === null) this._isInvalid = false;
     this._value = value;
-    this._isSubmitted = false;
-    this._cd.markForCheck();
   }
 
-  /** @implemented */
   public registerOnChange(fn: any): void {
     this.onChangeFn = fn;
   }
 
-  /** @implemented */
   public registerOnTouched(fn: any): void {
     this.onTouchFn = fn;
   }
@@ -107,16 +106,7 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
   public onChange(event: any): void {
     this._value = event.target.value;
     this.onChangeFn(event.target.value);
-    if (!this.control.value && this.config.isHidden) this._decrypted = false;
     if (this.control.touched) this._onValidate();
-    if (this.config.emitOnKeyUp) this.onKeyUp.emit(this.control.value);
-  }
-
-  public onShowPassword(): void {
-    if (this.config.isHidden) {
-      if (this._decrypted) this._decrypted = false;
-      else this._decrypted = true;
-    }
   }
 
   public onFocusOut(): void {
@@ -124,16 +114,23 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
     this._onValidate();
   }
 
-  private _onValidate(): void {
-    if (this.control.invalid) this._isInvalid = true;
-    else this._isInvalid = false;
+  public onCloseDatePicker(): void {
+    this.onTouchFn(true);
+    this._onValidate();
   }
 
-  public onClearControl(): void {
-    if (['', null, undefined].indexOf(this.control.value) >= 0) {
-      this.control.setValue('', { emitEvent: false });
-    } else this.control.setValue('');
-    this._value = '';
+  private _onValidate(): void {
+    const isValidDate = Date.parse(this.control.value);
+    if (
+      this.control.invalid ||
+      ([undefined, null, ''].indexOf(this.control.value) < 0 &&
+        this.control.valid &&
+        isNaN(isValidDate))
+    ) {
+      this._isInvalid = true;
+    } else {
+      this._isInvalid = false;
+    }
   }
 
   public ngOnDestroy(): void {
@@ -142,15 +139,11 @@ export class TsdTextFieldComponent implements OnInit, OnDestroy, ControlValueAcc
   }
 
   get control(): FormControl {
-    return this._ngControl.control as FormControl;
+    return this._ngControl?.control as FormControl;
   }
 
   get directive(): FormGroupDirective {
     return this._formGroupDirective as FormGroupDirective;
-  }
-
-  get decrypted() {
-    return this._decrypted;
   }
 
   get isDisabled() {

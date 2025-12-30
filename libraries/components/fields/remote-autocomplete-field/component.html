@@ -5,7 +5,7 @@
   >
     <mat-label>
       <ng-content /> {{ ' ' }}
-      @if (required) {
+      @if (required && !config.dangerXHidden) {
         <span class="tsd-field__danger-x">*</span>
       }
     </mat-label>

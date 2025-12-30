@@ -1,0 +1,67 @@
+@if (!config.notInput) {
+  <div class="tsd-form-container">
+    <mat-form-field
+      [floatLabel]="config.floatLabel || 'auto'"
+      [class.tsd-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
+      [appearance]="config.appearance || defaultAppearance"
+      [color]="config.color || 'primary'"
+    >
+      <mat-label>
+        <ng-content />{{ ' ' }}
+        @if (required && !config.dangerXHidden) {
+          <span class="tsd-field__danger-x">*</span>
+        }
+      </mat-label>
+      <input
+        matInput
+        [autocomplete]="config.autocomplete || 'off'"
+        [value]="value"
+        (keyup)="onChange($event)"
+        (dateChange)="onChange($event)"
+        [placeholder]="placeholder"
+        [disabled]="isDisabled"
+        [min]="config.minDate"
+        [max]="config.maxDate"
+        (focusout)="onFocusOut()"
+        [matDatepicker]="picker"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker (closed)="onCloseDatePicker()" #picker></mat-datepicker>
+    </mat-form-field>
+    @if (isInvalid || (isSubmitted && control.invalid)) {
+      <tsd-error [control]="control" [isDateField]="true"> </tsd-error>
+    }
+  </div>
+} @else {
+  <div>
+    <div
+      class="tsd__date-not-input__picker-container"
+      [class.mat-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
+    >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker (closed)="onCloseDatePicker()" #picker></mat-datepicker>
+    </div>
+    <div class="tsd__date-not-input__field-container">
+      <mat-form-field
+        [appearance]="config.appearance || defaultAppearance"
+        [color]="config.color || 'primary'"
+      >
+        <input
+          matInput
+          [min]="config.minDate"
+          [max]="config.maxDate"
+          autocomplete="off"
+          [matDatepicker]="picker"
+          [value]="value"
+          (keyup)="onChange($event)"
+          (dateChange)="onChange($event)"
+          [disabled]="isDisabled"
+          (focusout)="onFocusOut()"
+        />
+      </mat-form-field>
+    </div>
+    @if (isInvalid || (isSubmitted && control.invalid)) {
+      <tsd-error [control]="control" [isDateField]="true" [marginTop]="-60" />
+    }
+  </div>
+}

@@ -61,7 +61,6 @@ export class TsdAutocompleteFieldComponent implements OnInit, OnDestroy, Control
   private _unsubscribe$ = new Subject<void>();
   private _isSubmitted = false;
   private _isInvalid = false;
-  private _decrypted = false;
   private _required = false;
   private _value = '';
 
@@ -95,6 +94,7 @@ export class TsdAutocompleteFieldComponent implements OnInit, OnDestroy, Control
     if (!this.config.value) this.config.value = 'nombre';
     if (this.config.hasClearButton === undefined) this.config.hasClearButton = true;
     if (!this.config.complementType) this.config.complementType = 2;
+    if (this.config.dangerXHidden === undefined) this.config.dangerXHidden = false;
 
     const form: any = this.control;
 
@@ -139,15 +139,7 @@ export class TsdAutocompleteFieldComponent implements OnInit, OnDestroy, Control
             `${sug[this.config.value!]}`.toLowerCase() === `${`${this._value}`}`.toLowerCase(),
         )[0] || null,
       );
-      if (!this.control.value && this.config.isHidden) this._decrypted = false;
       if (this.control.touched) this._onValidate();
-    }
-  }
-
-  public onShowPassword(): void {
-    if (this.config.isHidden) {
-      if (this._decrypted) this._decrypted = false;
-      else this._decrypted = true;
     }
   }
 
@@ -229,10 +221,6 @@ export class TsdAutocompleteFieldComponent implements OnInit, OnDestroy, Control
 
   get directive(): FormGroupDirective {
     return this._formGroupDirective as FormGroupDirective;
-  }
-
-  get decrypted() {
-    return this._decrypted;
   }
 
   get isDisabled() {

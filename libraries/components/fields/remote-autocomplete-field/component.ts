@@ -58,7 +58,7 @@ import { MatIconModule } from '@toshida/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TsdRemoteAutocompleteFieldComponent implements OnInit, OnDestroy {
-  @Input() config: TsdConfigAutoCompleteFieldI = { url: '' };
+  @Input() config: TsdConfigAutoCompleteFieldI = {};
   @Input() disabled = false;
   @Input() placeholder = '';
 

@@ -15,6 +15,28 @@ export const TSD_FIELDS_PRESS_ESC_KEY = new KeyboardEvent('keydown', {
 
 export const TSD_PTRN_EMAIL = '^[^@]+@[^@]+.[a-zA-Z]{2,}$';
 export const TSD_PTRN_NUMRC = /^[0-9.]+$/;
+export const TSD_PTRN_NONSP = /^[^\s]+$/;
+
+export interface TsdConfigFieldI {
+  hasActionButton?: boolean;
+  hasClearButton?: boolean;
+  actionIcon?: string;
+  countCaracters?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  appearance?: MatFormFieldAppearance;
+  autocomplete?: TsdAutocompleteFieldType;
+  floatLabel?: FloatLabelType;
+  emitOnKeyUp?: boolean;
+  color?: ThemePalette;
+  dangerXHidden?: boolean;
+}
+
+export interface TsdConfigGeneralFieldI extends TsdConfigFieldI {
+  isTextArea?: boolean;
+  isHidden?: boolean;
+  isMoney?: boolean;
+}
 
 export interface TsdConfigFieldI {
   hasActionButton?: boolean;
@@ -30,6 +52,7 @@ export interface TsdConfigFieldI {
   showHiddenButton?: boolean;
   emitOnKeyUp?: boolean;
   color?: ThemePalette;
+  dangerXHidden?: boolean;
 }
 
 export interface TsdConfigAutoCompleteFieldI extends TsdConfigFieldI {
@@ -40,4 +63,10 @@ export interface TsdConfigAutoCompleteFieldI extends TsdConfigFieldI {
   value?: string;
   justSearchOneTime?: boolean;
   hasDefaultValue?: boolean;
+}
+
+export interface TsdConfigDateFieldI extends TsdConfigFieldI {
+  minDate?: string | Date;
+  maxDate?: string | Date;
+  notInput?: boolean;
 }

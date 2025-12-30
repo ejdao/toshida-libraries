@@ -12,13 +12,19 @@ body {
   font-family: 'bodycommerce' !important;
 }
 
+.font-weight-bolder {
+  font-weight: bolder !important;
+}
+
 .mdc-text-field--filled .mdc-floating-label,
 .mdc-text-field--outlined .mdc-floating-label,
 .mat-mdc-checkbox .mdc-label,
 .mdc-button .mdc-button__label,
 .tsd-table__content .mat-sort-header-content,
 .tsd-table__header,
-.tsd-table__sub-header {
+.tsd-table__sub-header,
+.mdc-button__label,
+.mdc-tooltip__surface {
   @extend .default-title-font;
 }
 
@@ -31,7 +37,10 @@ body {
 .mdc-list-item,
 .tsd-table__content .mdc-data-table__cell,
 .mat-mdc-paginator-container,
-.mat-mdc-select-min-line {
+.mat-mdc-select-min-line,
+.mat-calendar-body-label,
+.mat-calendar-table-header,
+.mat-calendar-body-cell-content {
   @extend .default-body-font;
 }
 

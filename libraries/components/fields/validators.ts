@@ -1,5 +1,5 @@
 import { Validators } from '@angular/forms';
-import { TSD_PTRN_EMAIL, TSD_PTRN_NUMRC } from './common';
+import { TSD_PTRN_EMAIL, TSD_PTRN_NONSP, TSD_PTRN_NUMRC } from './common';
 
 export const required = Validators.required;
 
@@ -15,4 +15,4 @@ export const max = (max: number) => Validators.max(max);
 
 export const min = (min: number) => Validators.min(min);
 
-export const withOutSpaces = Validators.pattern(/^[^\s]+$/);
+export const withOutSpaces = Validators.pattern(TSD_PTRN_NONSP);

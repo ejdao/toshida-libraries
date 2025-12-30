@@ -68,6 +68,14 @@ mat-form-field {
   .mat-mdc-form-field-required-marker,
 .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
   .mdc-floating-label
-  .mat-mdc-form-field-required-marker {
+  .mat-mdc-form-field-required-marker,
+.tsd-danger-x--forced {
   color: var(--tsd-form-field-error-color);
+}
+
+.tsd__date-not-input__field-container {
+  max-width: 1px;
+  max-height: 1px;
+  margin-top: -50px;
+  visibility: hidden;
 }
