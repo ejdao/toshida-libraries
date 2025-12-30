@@ -1,14 +1,13 @@
 @if (!config.notInput) {
-  <div class="tsd-form-container">
+  <div class="tsd-form-container" [attr.color]="config.color">
     <mat-form-field
       [floatLabel]="config.floatLabel || 'auto'"
       [class.tsd-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
       [appearance]="config.appearance || defaultAppearance"
-      [color]="config.color || 'primary'"
     >
       <mat-label>
         <ng-content />{{ ' ' }}
-        @if (required && !config.dangerXHidden) {
+        @if (required && !config.isDangerXHidden) {
           <span class="tsd-field__danger-x">*</span>
         }
       </mat-label>
@@ -25,7 +24,7 @@
         (focusout)="onFocusOut()"
         [matDatepicker]="picker"
       />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle matSuffix [for]="picker" (click)="onOpenDatePicker()" />
       <mat-datepicker (closed)="onCloseDatePicker()" #picker></mat-datepicker>
     </mat-form-field>
     @if (isInvalid || (isSubmitted && control.invalid)) {
@@ -38,14 +37,11 @@
       class="tsd__date-not-input__picker-container"
       [class.mat-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
     >
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker-toggle matSuffix [for]="picker" (click)="onOpenDatePicker()" />
       <mat-datepicker (closed)="onCloseDatePicker()" #picker></mat-datepicker>
     </div>
     <div class="tsd__date-not-input__field-container">
-      <mat-form-field
-        [appearance]="config.appearance || defaultAppearance"
-        [color]="config.color || 'primary'"
-      >
+      <mat-form-field [appearance]="config.appearance || defaultAppearance">
         <input
           matInput
           [min]="config.minDate"

@@ -30,27 +30,52 @@ html {
   @include mat.theme(
     (
       color: $matTheme,
-      density: 0,
     )
   );
 }
 
-[color='primary'] {
-  @include mat.button-theme($theme: $theme, $color-variant: 'primary');
-  @include mat.icon-button-theme($theme: $theme, $color-variant: 'primary');
-  @include mat.fab-theme($theme: $theme, $color-variant: 'primary');
+button[color='primary'] {
+  @include mat.button-theme($theme, $color-variant: 'primary');
+  @include mat.icon-button-theme($theme, $color-variant: 'primary');
+  @include mat.fab-theme($theme, $color-variant: 'primary');
+}
+.tsd-form-container[color='primary'],
+.tsd-date-picker--primary {
+  @include mat.form-field-theme($theme, $color-variant: 'primary');
+  @include mat.datepicker-theme($theme, $color-variant: 'primary');
+}
+mat-tab-group[color='primary'] {
+  @include mat.tabs-theme($theme, $color-variant: 'primary');
 }
 
-[color='accent'] {
-  @include mat.button-theme($theme: $theme, $color-variant: 'tertiary');
-  @include mat.icon-button-theme($theme: $theme, $color-variant: 'tertiary');
-  @include mat.fab-theme($theme: $theme, $color-variant: 'tertiary');
+button[color='accent'] {
+  @include mat.button-theme($theme, $color-variant: 'tertiary');
+  @include mat.icon-button-theme($theme, $color-variant: 'tertiary');
+  @include mat.fab-theme($theme, $color-variant: 'tertiary');
+  @include mat.tabs-theme($theme, $color-variant: 'tertiary');
+}
+.tsd-form-container[color='accent'],
+.tsd-date-picker--accent {
+  @include mat.form-field-theme($theme, $color-variant: 'tertiary');
+  @include mat.datepicker-theme($theme, $color-variant: 'tertiary');
+}
+mat-tab-group[color='accent'] {
+  @include mat.tabs-theme($theme, $color-variant: 'tertiary');
 }
 
-[color='warn'] {
-  @include mat.button-theme($theme: $theme, $color-variant: 'error');
-  @include mat.icon-button-theme($theme: $theme, $color-variant: 'error');
-  @include mat.fab-theme($theme: $theme, $color-variant: 'error');
+button[color='warn'] {
+  @include mat.button-theme($theme, $color-variant: 'error');
+  @include mat.icon-button-theme($theme, $color-variant: 'error');
+  @include mat.fab-theme($theme, $color-variant: 'error');
+  @include mat.tabs-theme($theme, $color-variant: 'error');
+}
+.tsd-form-container[color='warn'],
+.tsd-date-picker--warn {
+  @include mat.datepicker-theme($theme, $color-variant: 'error');
+  @include mat.form-field-theme($theme, $color-variant: 'error');
+}
+mat-tab-group[color='warn'] {
+  @include mat.tabs-theme($theme, $color-variant: 'error');
 }
 
 html {
@@ -59,4 +84,8 @@ html {
 
 html[data-theme='dark'] {
   color-scheme: dark;
+}
+
+.mat-mdc-tab {
+  font-weight: 600 !important;
 }

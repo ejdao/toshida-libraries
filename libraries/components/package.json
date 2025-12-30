@@ -1,5 +1,9 @@
 {
   "name": "@toshida/ng-components",
-  "version": "1.0.7-testing",
-  "sideEffects": false
+  "version": "1.0.0",
+  "sideEffects": false,
+  "dependencies": {
+    "@toshida/cdk": "^20.2.14",
+    "@toshida/material": "^20.2.14"
+  }
 }

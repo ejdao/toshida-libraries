@@ -1,11 +1,11 @@
-<div class="tsd-form-container">
+<div class="tsd-form-container" [attr.color]="config.color">
   <mat-form-field
     [appearance]="config.appearance || defaultAppearance"
     class="tsd-remote-form-field"
   >
     <mat-label>
       <ng-content /> {{ ' ' }}
-      @if (required && !config.dangerXHidden) {
+      @if (required && !config.isDangerXHidden) {
         <span class="tsd-field__danger-x">*</span>
       }
     </mat-label>

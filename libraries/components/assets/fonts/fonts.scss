@@ -24,7 +24,8 @@ body {
 .tsd-table__header,
 .tsd-table__sub-header,
 .mdc-button__label,
-.mdc-tooltip__surface {
+.mdc-tooltip__surface,
+.mat-mdc-tab {
   @extend .default-title-font;
 }
 

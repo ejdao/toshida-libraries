@@ -29,7 +29,7 @@ export interface TsdConfigFieldI {
   floatLabel?: FloatLabelType;
   emitOnKeyUp?: boolean;
   color?: ThemePalette;
-  dangerXHidden?: boolean;
+  isDangerXHidden?: boolean;
 }
 
 export interface TsdConfigGeneralFieldI extends TsdConfigFieldI {
@@ -52,7 +52,7 @@ export interface TsdConfigFieldI {
   showHiddenButton?: boolean;
   emitOnKeyUp?: boolean;
   color?: ThemePalette;
-  dangerXHidden?: boolean;
+  isDangerXHidden?: boolean;
 }
 
 export interface TsdConfigAutoCompleteFieldI extends TsdConfigFieldI {

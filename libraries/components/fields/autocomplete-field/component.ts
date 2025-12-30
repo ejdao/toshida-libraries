@@ -94,7 +94,7 @@ export class TsdAutocompleteFieldComponent implements OnInit, OnDestroy, Control
     if (!this.config.value) this.config.value = 'nombre';
     if (this.config.hasClearButton === undefined) this.config.hasClearButton = true;
     if (!this.config.complementType) this.config.complementType = 2;
-    if (this.config.dangerXHidden === undefined) this.config.dangerXHidden = false;
+    if (this.config.isDangerXHidden === undefined) this.config.isDangerXHidden = false;
 
     const form: any = this.control;
 

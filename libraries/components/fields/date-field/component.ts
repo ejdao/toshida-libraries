@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   OnDestroy,
   Component,
+  ViewChild,
   Optional,
   OnInit,
   Input,
@@ -13,7 +14,11 @@ import { takeUntil } from 'rxjs/operators';
 import { ControlValueAccessor, FormControl, FormGroupDirective, NgControl } from '@angular/forms';
 import { TSD_DEFAULT_APPEARANCE_FORM, TsdConfigDateFieldI } from '../common';
 import { MatFormField, MatLabel } from '@toshida/material/form-field';
-import { MatDatepickerIntl, MatDatepickerModule } from '@toshida/material/datepicker';
+import {
+  MatDatepicker,
+  MatDatepickerIntl,
+  MatDatepickerModule,
+} from '@toshida/material/datepicker';
 import { MatInputModule } from '@toshida/material/input';
 import { TsdErrorComponent } from '../error/component';
 import {
@@ -39,10 +44,13 @@ import { getSpanishMatDatePickerIntl } from '../translations';
   ],
   selector: 'tsd-date-field',
   templateUrl: './component.html',
+  styles: [``],
 })
 export class TsdDateFieldComponent
   implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor
 {
+  @ViewChild('picker') picker: any;
+
   @Input() config: TsdConfigDateFieldI = {};
   @Input() disabled = false;
   @Input() placeholder = '';
@@ -88,6 +96,16 @@ export class TsdDateFieldComponent
     const isValidDate = Date.parse(this.control.value);
     if (isNaN(isValidDate)) this.control.setValue(null);
     else this.control.setValue(new Date(this.control.value));
+  }
+
+  onOpenDatePicker() {
+    const interval = setInterval(() => {
+      try {
+        const localClass = `tsd-date-picker--${this.config.color}`;
+        document.getElementById(this.picker.id)!.classList.add(localClass);
+        clearInterval(interval);
+      } catch (error) {}
+    });
   }
 
   public writeValue(value: string): void {

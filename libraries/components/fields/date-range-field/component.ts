@@ -3,8 +3,8 @@ import {
   MatNativeDateModule,
   provideNativeDateAdapter,
 } from '@toshida/material/core';
-import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { TSD_DEFAULT_APPEARANCE_FORM, TsdConfigDateFieldI } from '../common';
 import { MatDatepickerIntl, MatDatepickerModule } from '@toshida/material/datepicker';
 import { MatFormFieldModule } from '@toshida/material/form-field';
@@ -30,6 +30,8 @@ import { TsdErrorComponent } from '../error/component';
   templateUrl: './component.html',
 })
 export class TsdDateRangeFieldComponent implements OnInit {
+  @ViewChild('picker') picker: any;
+
   @Input() config: TsdConfigDateFieldI = {};
   @Input() disabled = false;
   @Input() startPlaceholder: string = 'Inicio';
@@ -58,6 +60,16 @@ export class TsdDateRangeFieldComponent implements OnInit {
       this.start.disable();
       this.end.disable();
     }
+  }
+
+  onOpenDatePicker() {
+    const interval = setInterval(() => {
+      try {
+        const localClass = `tsd-date-picker--${this.config.color}`;
+        document.getElementById(this.picker.id)!.classList.add(localClass);
+        clearInterval(interval);
+      } catch (error) {}
+    });
   }
 
   get required() {

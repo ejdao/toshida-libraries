@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  TsdDateRangeFieldComponent,
-  TsdGeneralFieldComponent,
-} from '@toshida/ng-components/fields';
+import { MatButtonModule } from '@toshida/material/button';
+import { MatTabsModule } from '@toshida/material/tabs';
+import { TsdFieldsModule } from '@toshida/ng-components/fields';
+import { MatIconModule } from '@toshida/material/icon';
 
 @Component({
-  imports: [TsdGeneralFieldComponent, TsdDateRangeFieldComponent, ReactiveFormsModule, FormsModule],
+  imports: [
+    MatButtonModule,
+    TsdFieldsModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+  ],
   selector: 'app-home',
   templateUrl: './component.html',
   styleUrl: './component.scss',
