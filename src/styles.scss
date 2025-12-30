@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @use '../public/material/main';
+@use '../public/layouts/loader';
+@use '../public/layouts/admin';
+@use '../public/layouts/access-control';
 @use '../libraries/components/assets/assets';
-@use '../libraries/components/assets/layouts/admin';

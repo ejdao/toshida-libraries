@@ -7,7 +7,7 @@ import {
   signal,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { TsdLayoutsMenuSection, TsdLayoutsNavItem } from '@toshida/ng-components/layouts';
+import { TsdLayoutsMenuSection, TsdLayoutsNavItem } from '../common';
 import { RouterLink } from '@angular/router';
 
 @Component({

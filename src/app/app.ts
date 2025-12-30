@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { AdminDashboardContainerComponent } from '@toshida/ng-components/layouts/admin';
-import { TsdLayoutsMenuSection } from '@toshida/ng-components/layouts';
+import { AdminDashboardContainerComponent } from './layouts/admin';
+import { TsdLayoutsMenuSection } from './layouts';
 import { APP_NAVIGATION } from './app.navigation';
 
 @Component({

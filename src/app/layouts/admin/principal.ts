@@ -2,7 +2,7 @@ import { Component, signal, effect, Input, ChangeDetectionStrategy } from '@angu
 import { DbContentComponent } from './content';
 import { HeaderComponent } from './header';
 import { SidebarComponent } from './sidebar';
-import { TsdLayoutsMenuSection } from '@toshida/ng-components/layouts';
+import { TsdLayoutsMenuSection } from '../common';
 
 @Component({
   selector: 'tsd-admin-db-container',

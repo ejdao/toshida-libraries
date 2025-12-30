@@ -1,4 +1,4 @@
-import { IS_WEB_DISPLAYED_ON_MOBILE, TsdLayoutsMenuSection } from '@toshida/ng-components/layouts';
+import { IS_WEB_DISPLAYED_ON_MOBILE, TsdLayoutsMenuSection } from './layouts';
 import { GENERAL_SNAV_ITEMS } from '@navigation/general';
 
 const showedInMobile = IS_WEB_DISPLAYED_ON_MOBILE;
