@@ -1,0 +1,91 @@
+@use '@toshida/material' as mat;
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+// mat.$red-palette
+// mat.$green-palette
+// mat.$blue-palette
+// mat.$yellow-palette
+// mat.$cyan-palette
+// mat.$magenta-palette
+// mat.$orange-palette
+// mat.$chartreuse-palette
+// mat.$spring-green-palette
+// mat.$azure-palette
+// mat.$violet-palette
+// mat.$rose-palette
+
+$matTheme: mat.$cyan-palette;
+
+$theme: mat.define-theme(
+  (
+    color: (
+      primary: $matTheme,
+      tertiary: mat.$green-palette,
+    ),
+  )
+);
+
+html {
+  @include mat.theme(
+    (
+      color: $matTheme,
+    )
+  );
+}
+
+button[color='primary'] {
+  @include mat.button-theme($theme, $color-variant: 'primary');
+  @include mat.icon-button-theme($theme, $color-variant: 'primary');
+  @include mat.fab-theme($theme, $color-variant: 'primary');
+}
+.tsd-form-container[color='primary'],
+.tsd-date-picker--primary {
+  @include mat.form-field-theme($theme, $color-variant: 'primary');
+  @include mat.datepicker-theme($theme, $color-variant: 'primary');
+}
+mat-tab-group[color='primary'] {
+  @include mat.tabs-theme($theme, $color-variant: 'primary');
+}
+
+button[color='accent'] {
+  @include mat.button-theme($theme, $color-variant: 'tertiary');
+  @include mat.icon-button-theme($theme, $color-variant: 'tertiary');
+  @include mat.fab-theme($theme, $color-variant: 'tertiary');
+  @include mat.tabs-theme($theme, $color-variant: 'tertiary');
+}
+.tsd-form-container[color='accent'],
+.tsd-date-picker--accent {
+  @include mat.form-field-theme($theme, $color-variant: 'tertiary');
+  @include mat.datepicker-theme($theme, $color-variant: 'tertiary');
+}
+mat-tab-group[color='accent'] {
+  @include mat.tabs-theme($theme, $color-variant: 'tertiary');
+}
+
+button[color='warn'] {
+  @include mat.button-theme($theme, $color-variant: 'error');
+  @include mat.icon-button-theme($theme, $color-variant: 'error');
+  @include mat.fab-theme($theme, $color-variant: 'error');
+  @include mat.tabs-theme($theme, $color-variant: 'error');
+}
+.tsd-form-container[color='warn'],
+.tsd-date-picker--warn {
+  @include mat.datepicker-theme($theme, $color-variant: 'error');
+  @include mat.form-field-theme($theme, $color-variant: 'error');
+}
+mat-tab-group[color='warn'] {
+  @include mat.tabs-theme($theme, $color-variant: 'error');
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+.mat-mdc-tab {
+  font-weight: 600 !important;
+}

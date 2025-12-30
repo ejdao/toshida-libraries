@@ -1,0 +1,26 @@
+<button mat-icon-button color="accent"><mat-icon>menu</mat-icon></button>
+
+<div class="container">
+  <div class="row">
+    <div class="col-bt-4">
+      <tsd-autocomplete-field [config]="{ appearance: 'outline' }" [formControl]="texto">
+        Textareaasd
+      </tsd-autocomplete-field>
+    </div>
+
+    <div class="col-bt-4">
+      <tsd-date-range-field [config]="{ notInput: false }" [start]="inicio" [end]="fin">
+        Date
+      </tsd-date-range-field>
+    </div>
+    <div class="col-bt-4">
+      <tsd-date-field [config]="{ notInput: false }" [formControl]="date"> Date </tsd-date-field>
+    </div>
+  </div>
+</div>
+
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="First">Content 1</mat-tab>
+  <mat-tab label="Second">Content 2</mat-tab>
+  <mat-tab label="Third">Content 3</mat-tab>
+</mat-tab-group>

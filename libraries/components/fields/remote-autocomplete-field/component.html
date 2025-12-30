@@ -1,0 +1,67 @@
+<div class="tsd-form-container" [attr.color]="config.color">
+  <mat-form-field
+    [appearance]="config.appearance || defaultAppearance"
+    class="tsd-remote-form-field"
+  >
+    <mat-label>
+      <ng-content /> {{ ' ' }}
+      @if (required && !config.isDangerXHidden) {
+        <span class="tsd-field__danger-x">*</span>
+      }
+    </mat-label>
+    <input
+      matInput
+      [placeholder]="placeholder"
+      [formControl]="autocomplete"
+      [matAutocomplete]="auto"
+    />
+
+    @if (isLoading || (autocomplete.value === null && isLoadingItem)) {
+      <mat-spinner
+        mat-icon-button
+        [diameter]="15"
+        mode="indeterminate"
+        class="spinner-loading"
+      ></mat-spinner>
+    }
+    @if (autocomplete.value) {
+      <button mat-icon-button matSuffix (click)="reset()" [disabled]="formIsDisabled">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+    @if (!autocomplete.value && config.justSearchOneTime) {
+      <button mat-icon-button matSuffix (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    }
+    @if (autocomplete.value && canAddNewProduct && !this.newProductAdded && acceptNewEntities) {
+      <button
+        [disabled]="formIsDisabled"
+        mat-icon-button
+        matSuffix
+        (click)="done()"
+        matTooltip="Pendiente por agregar a base de datos"
+      >
+        <mat-icon>done</mat-icon>
+      </button>
+    }
+
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      @for (option of suggestions; track $index) {
+        <mat-option
+          [value]="option[config.value!]"
+          (onSelectionChange)="emit($event, option)"
+          [title]="option[config.value!]"
+        >
+          @if (config.complement && config.complementType && config.complementType === 1) {
+            {{ option[config.complement] }} -
+          }
+          {{ option[config.value!] }}
+          @if (config.complement && config.complementType && config.complementType === 2) {
+            <span class="tsd-option-span-extra">{{ option[config.complement] }}</span>
+          }
+        </mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</div>

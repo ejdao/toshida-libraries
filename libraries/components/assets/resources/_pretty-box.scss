@@ -1,0 +1,24 @@
+.tsd-pretty-box {
+  border: 1px solid var(--mat-divider-color, var(--mat-sys-outline-variant));
+  border-radius: 10px;
+  max-width: 500px;
+  &__header,
+  &__content,
+  &__footer {
+    padding: 10px;
+  }
+  &__header {
+    h1 {
+      font-size: 20px;
+      line-height: 5px;
+    }
+    h2 {
+      line-height: 5px;
+      font-size: 15px;
+    }
+  }
+  &__content {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+}

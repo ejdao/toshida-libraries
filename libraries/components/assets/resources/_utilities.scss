@@ -1,0 +1,46 @@
+/****************/
+/***** flex *****/
+/****************/
+.d-flex {
+  display: flex;
+  align-items: center;
+  &.center {
+    justify-content: center;
+  }
+  &.start {
+    justify-content: start;
+  }
+  &.end {
+    justify-content: end;
+  }
+  &.between {
+    justify-content: space-between;
+  }
+  &.space-between {
+    justify-content: space-between;
+  }
+}
+/****************/
+/**** margin ****/
+/****************/
+@mixin customizedMargin($px) {
+  .margin-top-#{$px} {
+    margin-top: $px;
+  }
+  .margin-right-#{$px} {
+    margin-right: $px;
+  }
+  .margin-bottom-#{$px} {
+    margin-bottom: $px;
+  }
+  .margin-left-#{$px} {
+    margin-left: $px;
+  }
+  .margin-#{$px} {
+    margin: $px;
+  }
+}
+
+@include customizedMargin(10px);
+@include customizedMargin(20px);
+@include customizedMargin(30px);

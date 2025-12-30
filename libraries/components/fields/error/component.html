@@ -1,0 +1,41 @@
+<div class="tsd-custom-error tsd-fade-in--800ms default-body-font" [style.marginTop.px]="marginTop">
+  @if (control !== undefined && isDateField && control.valid) {
+    <div>{{ 'badDateMsg' | errorMsg }}</div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: required) {
+    <div>{{ 'requiredMsg' | errorMsg }}</div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: max) {
+    <div>{{ 'maxMsg' | errorMsg: max.max }}</div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: min) {
+    <div>{{ 'minMsg' | errorMsg: min.min }}</div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: maxlength) {
+    <div>{{ 'maxLengthMsg' | errorMsg: maxlength.requiredLength }}</div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: minlength) {
+    <div>{{ 'minLengthMsg' | errorMsg: minlength.requiredLength }}</div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: email) {
+    <div>{{ 'EmailMsg' | errorMsg }}</div>
+  }
+  @if (control === undefined) {
+    <div>
+      {{
+        start.hasError('required') && end.hasError('required')
+          ? ('requiredMsg' | errorMsg)
+          : ('DateRangeMsg' | errorMsg)
+      }}
+    </div>
+  }
+  @if (control !== undefined && control.errors | errorEquals: pattern) {
+    <div>
+      {{
+        isNumberField
+          ? 'El campo solo debe contener caracteres numericos'
+          : ('patternMsg' | errorMsg: pattern)
+      }}
+    </div>
+  }
+</div>

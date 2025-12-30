@@ -1,0 +1,81 @@
+<div class="tsd-form-container" color="warn" [attr.color]="config.color">
+  <mat-form-field
+    [floatLabel]="config.floatLabel || 'auto'"
+    [class.tsd-form-field-invalid]="isInvalid || (isSubmitted && control.invalid)"
+    [appearance]="config.appearance || defaultAppearance"
+  >
+    <mat-label>
+      <ng-content />{{ ' ' }}
+      @if (required && !config.isDangerXHidden) {
+        <span class="tsd-field__danger-x">*</span>
+      }
+    </mat-label>
+    @if (!config.isTextArea) {
+      <input
+        matInput
+        [type]="config.isHidden ? (!decrypted ? 'password' : 'text') : type"
+        [autocomplete]="config.autocomplete || 'off'"
+        [value]="value"
+        (keyup)="onChange($event)"
+        (change)="onChange($event)"
+        (keydown)="onKeyDown($event)"
+        [placeholder]="placeholder"
+        [disabled]="isDisabled"
+        [attr.minLength]="config.minLength"
+        [attr.maxLength]="config.maxLength"
+        (focusout)="onFocusOut()"
+        [class.font-weight-bolder]="config.isMoney"
+      />
+    } @else {
+      <textarea
+        matInput
+        [autocomplete]="config.autocomplete || 'off'"
+        [value]="value"
+        (keyup)="onChange($event)"
+        (change)="onChange($event)"
+        [placeholder]="placeholder"
+        [disabled]="isDisabled"
+        [attr.minLength]="config.minLength"
+        [attr.maxLength]="config.maxLength"
+        (focusout)="onFocusOut()"
+      ></textarea>
+    }
+    @if (control.value && config.hasClearButton && !isDisabled) {
+      <button
+        class="tsd-suffix-button"
+        matSuffix
+        mat-icon-button
+        type="button"
+        (click)="onClearControl()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+    @if (control.value && config.hasActionButton && !isDisabled) {
+      <button
+        class="tsd-suffix-button"
+        matSuffix
+        mat-icon-button
+        type="button"
+        (click)="onExecuteAction.emit(control.value)"
+      >
+        <mat-icon>{{ config.actionIcon || 'search' }}</mat-icon>
+      </button>
+    }
+    @if (control.value && !isDisabled && config.isHidden) {
+      <button class="tsd-suffix-button" matSuffix mat-icon-button (click)="onShowPassword()">
+        <mat-icon>{{ decrypted ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    }
+    @if (config.countCaracters) {
+      <mat-hint align="end" class="tsd-hint">
+        {{ control.value?.length || 0 }}{{ config.maxLength ? '/' : '' }}{{ config.maxLength }}
+      </mat-hint>
+    }
+  </mat-form-field>
+  <div [style.maxWidth]="config.countCaracters ? '80%' : '100%'">
+    @if (isInvalid || (isSubmitted && control.invalid)) {
+      <tsd-error [control]="control" />
+    }
+  </div>
+</div>

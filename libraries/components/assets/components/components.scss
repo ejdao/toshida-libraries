@@ -1,0 +1,60 @@
+@use 'tables';
+@use 'buttons';
+@use 'fields';
+@use 'modal';
+@use 'toasts';
+
+:root {
+  --tsd-header-height: 50px;
+  --tsd-footer-height: 30px;
+  --tsd-sidebar-compact-width: 50px;
+  --tsd-sidebar-full-width: 240px;
+  --tsd-layout-outlet-padding: 20px;
+}
+
+:root {
+  --tsd-form-field-hint-color: rgb(128, 128, 128);
+  --tsd-form-field-error-color: rgb(255, 0, 0);
+  --tsd-option-span-extra: gray;
+  --tsd-paginator-container-background-color: rgb(255, 255, 255);
+  --tsd-table-background-color: rgb(255, 255, 255);
+  --tsd-table-header-color: rgb(255, 255, 255);
+  --tsd-table-row-subcontent-color: rgb(128, 128, 128);
+  --tsd-table-container-box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --tsd-table-container-border-color: none;
+  --tsd-table-row-border-bottom-color: rgba(0, 0, 0, 0.12);
+  --tsd-table-header-background-color: #191b3c;
+  --tsd-table-border-color: none;
+  --tsd-table-selectable-hover-color: rgba(0, 0, 0, 0.12);
+  --tsd-table-selectable-row-hover: rgba(204, 204, 204, 0.4);
+  --tsd-table-not-selectable-row: #f5b5c0c4;
+  --tsd-table-not-selectable-row-hover: #f5aab7ea;
+  --tsd-snackbar--notification-color: rgb(39, 39, 39);
+  --tsd-snackbar--notification-background-color: var(--mat-sys-primary-fixed-dim);
+  --tsd-snackbar--notification-button-color: var(--mat-sys-primary);
+  --tsd-snackbar--danger-color: rgb(39, 39, 39);
+  --tsd-snackbar--danger-background-color: rgba(255, 156, 156, 0.85);
+  --tsd-snackbar--danger-action-button-color: #fd2626;
+  --tsd-snackbar--success-color: rgb(39, 39, 39);
+  --tsd-snackbar--success-background-color: rgba(223, 246, 234, 0.925);
+  --tsd-snackbar--success-action-button-color: #004646;
+}
+
+[data-theme='dark'] {
+  --tsd-paginator-container-background-color: rgb(13, 17, 23);
+  --tsd-table-background-color: var(--mat-sys-background);
+  --tsd-table-container-box-shadow: none;
+  --tsd-table-container-border-color: rgba(255, 255, 255, 0.12);
+  --tsd-table-row-border-bottom-color: rgba(255, 255, 255, 0.12);
+  --tsd-table-header-background-color: var(--mat-sys-background);
+  --tsd-table-border-color: var(--tak-dark-color-100);
+  --tsd-table-selectable-row-hover: rgba(124, 124, 124, 0.4);
+  --tsd-table-selectable-hover-color: rgba(255, 255, 255, 0.12);
+  --tsd-table-not-selectable-row: #c45366c4;
+  --tsd-table-not-selectable-row-hover: #cc3c54ea;
+}
+
+.cdk-global-scrollblock {
+  overflow-y: hidden !important;
+}

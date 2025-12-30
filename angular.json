@@ -58,6 +58,26 @@
           }
         }
       }
+    },
+    "components": {
+      "projectType": "library",
+      "root": "libraries/components",
+      "sourceRoot": "libraries/components/src",
+      "prefix": "tsd",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": { "tsConfig": "libraries/components/tsconfig.lib.prod.json" },
+            "development": { "tsConfig": "libraries/components/tsconfig.lib.json" }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": { "tsConfig": "libraries/components/tsconfig.spec.json" }
+        }
+      }
     }
   }
 }

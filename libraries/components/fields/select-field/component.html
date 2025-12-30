@@ -1,0 +1,44 @@
+@if (type === 'select') {
+  <div class="tsd-form-container" [attr.color]="config.color">
+    <mat-form-field [appearance]="config.appearance || defaultAppearance">
+      <mat-label><ng-content /></mat-label>
+      <mat-select [formControl]="control" (focusout)="onFocusOut()">
+        @for (suggestion of suggestions; track suggestion) {
+          <mat-option
+            [value]="suggestion"
+            (onSelectionChange)="emit($event)"
+            [title]="
+              suggestion[config.value!] +
+              (config.complement ? '(' + suggestion[config.complement] + ')' : '')
+            "
+          >
+            {{ suggestion[config.value!] }}
+            @if (config.complement) {
+              <span class="tsd-option-span-extra">{{ suggestion[config.complement] }}</span>
+            }
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    @if (isInvalid || (isSubmitted && control.invalid)) {
+      <tsd-error [control]="control"></tsd-error>
+    }
+  </div>
+} @else {
+  <div [matTooltip]="tooltip">
+    @if (type === 'menu') {
+      <span>
+        <button mat-icon-button type="button" [matMenuTriggerFor]="menu" [disabled]="isDisabled">
+          <mat-icon>{{ icon }}</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          @for (item of suggestions; track item) {
+            <a tsd-menu-item (click)="justEmit(item)">
+              {{ item[config.value!] }}
+            </a>
+          }
+        </mat-menu>
+      </span>
+    }
+  </div>
+}

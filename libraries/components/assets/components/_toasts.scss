@@ -1,0 +1,29 @@
+.mdc-snackbar.tsd-snackbar--danger {
+  .mat-mdc-snackbar-surface {
+    color: var(--tsd-snackbar--danger-color);
+    background-color: var(--tsd-snackbar--danger-background-color);
+  }
+  .mdc-button.mdc-snackbar__action {
+    color: var(--tsd-snackbar--danger-action-button-color) !important;
+  }
+}
+
+.mdc-snackbar.tsd-snackbar--notification {
+  .mat-mdc-snackbar-surface {
+    color: var(--tsd-snackbar--notification-color);
+    background-color: var(--tsd-snackbar--notification-background-color);
+  }
+  .mdc-button.mdc-snackbar__action {
+    color: var(--tsd-snackbar--notification-action-button-color) !important;
+  }
+}
+
+.mdc-snackbar.tsd-snackbar--success {
+  .mat-mdc-snackbar-surface {
+    color: var(--tsd-snackbar--success-color);
+    background-color: var(--tsd-snackbar--success-background-color);
+  }
+  .mdc-button.mdc-snackbar__action {
+    color: var(--tsd-snackbar--success-action-button-color) !important;
+  }
+}

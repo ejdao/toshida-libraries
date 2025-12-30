@@ -1,0 +1,34 @@
+@use '@toshida/material' as mat;
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+// mat.$red-palette
+// mat.$green-palette
+// mat.$blue-palette
+// mat.$yellow-palette
+// mat.$cyan-palette
+// mat.$magenta-palette
+// mat.$orange-palette
+// mat.$chartreuse-palette
+// mat.$spring-green-palette
+// mat.$azure-palette
+// mat.$violet-palette
+// mat.$rose-palette
+
+html {
+  @include mat.theme(
+    (
+      color: mat.$cyan-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+html {
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}

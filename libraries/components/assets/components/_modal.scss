@@ -1,0 +1,37 @@
+.tsd-modal {
+  &__tsd-dialog-title {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  .mat-dialog-title {
+    padding: 0;
+  }
+  .mat-dialog__content {
+    padding: 0;
+  }
+  [mat-button] {
+    font-weight: bolder;
+  }
+  [mat-dialog-title] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__buttons {
+    display: flex;
+    & button {
+      font-weight: bolder;
+      text-transform: uppercase;
+    }
+    &.tsd-modal-one {
+      justify-content: end;
+    }
+    &.tsd-modal-two {
+      justify-content: space-between;
+    }
+  }
+  .tsd-dialog-content {
+    padding: 0;
+  }
+}

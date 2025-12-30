@@ -1,0 +1,40 @@
+@mixin customizedTsdFadeIn($size) {
+  .tsd-fade-in--#{$size} {
+    animation: tsdFadeIn ease $size;
+    -webkit-animation: tsdFadeIn ease $size;
+    -moz-animation: tsdFadeIn ease $size;
+    -o-animation: tsdFadeIn ease $size;
+    -ms-animation: tsdFadeIn ease $size;
+  }
+}
+
+@keyframes tsdFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes tsdFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes tsdFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include customizedTsdFadeIn(300ms);
+@include customizedTsdFadeIn(500ms);
+@include customizedTsdFadeIn(800ms);

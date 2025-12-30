@@ -1,12 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AdminDashboardContainerComponent } from './layouts/admin';
+import { TsdLayoutsMenuSection } from './layouts';
+import { APP_NAVIGATION } from './app.navigation';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AdminDashboardContainerComponent],
   templateUrl: './app.html',
-  styleUrl: './app.scss',
 })
 export class App {
-  protected readonly title = signal('Toshida libraries');
+  menuSections = signal<TsdLayoutsMenuSection[]>(APP_NAVIGATION);
 }

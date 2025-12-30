@@ -1,0 +1,44 @@
+@if (!config.notInput) {
+  <div class="tsd-form-container" [attr.color]="config.color">
+    <mat-form-field
+      [floatLabel]="config.floatLabel || 'auto'"
+      [appearance]="config.appearance || defaultAppearance"
+    >
+      <mat-label>
+        <ng-content />
+      </mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate [placeholder]="startPlaceholder" [formControl]="start" />
+        <input matEndDate [placeholder]="endPlaceholder" [formControl]="end" />
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker" (click)="onOpenDatePicker()" />
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    @if ((start.invalid || end.invalid) && (start.touched || end.touched)) {
+      <tsd-error [start]="start" [end]="end"> </tsd-error>
+    }
+  </div>
+} @else {
+  <div>
+    <div
+      class="tsd__date-not-input__picker-container"
+      [class.mat-form-field-invalid]="
+        (start.invalid || end.invalid) && (start.touched || end.touched)
+      "
+    >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker [disabled]="isDisabled" (click)="onOpenDatePicker()" />
+    </div>
+    <div class="tsd__date-not-input__field-container">
+      <mat-form-field>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate [formControl]="start" />
+          <input matEndDate [formControl]="end" />
+        </mat-date-range-input>
+      </mat-form-field>
+    </div>
+    @if ((start.invalid || end.invalid) && (start.touched || end.touched)) {
+      <tsd-error [start]="start" [end]="end" [marginTop]="-60" />
+    }
+  </div>
+}
