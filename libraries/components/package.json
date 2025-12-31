@@ -1,6 +1,12 @@
 {
   "name": "@toshida/ng-components",
   "version": "1.0.0",
+  "description": "Toshida ng components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ejdao/toshida-libraries.git"
+  },
+  "license": "MIT",
   "sideEffects": false,
   "dependencies": {
     "@toshida/cdk": "^20.2.14",

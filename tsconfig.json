@@ -7,6 +7,7 @@
     "paths": {
       "@toshida/ng-components/*": ["./libraries/components/*"]
     },
+    "allowJs": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -31,6 +32,8 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.spec.json" },
     { "path": "./libraries/components/tsconfig.lib.json" },
-    { "path": "./libraries/components/tsconfig.spec.json" }
+    { "path": "./libraries/components/tsconfig.spec.json" },
+    { "path": "./libraries/utilities/tsconfig.lib.json" },
+    { "path": "./libraries/utilities/tsconfig.spec.json" }
   ]
 }

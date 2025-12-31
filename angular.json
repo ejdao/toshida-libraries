@@ -78,6 +78,26 @@
           "options": { "tsConfig": "libraries/components/tsconfig.spec.json" }
         }
       }
+    },
+    "utilities": {
+      "projectType": "library",
+      "root": "libraries/utilities",
+      "sourceRoot": "libraries/utilities/src",
+      "prefix": "tsd",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": { "tsConfig": "libraries/utilities/tsconfig.lib.prod.json" },
+            "development": { "tsConfig": "libraries/utilities/tsconfig.lib.json" }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": { "tsConfig": "libraries/utilities/tsconfig.spec.json" }
+        }
+      }
     }
   }
 }

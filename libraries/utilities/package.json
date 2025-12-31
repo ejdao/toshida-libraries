@@ -1,0 +1,11 @@
+{
+  "name": "@toshida/ng-utilities",
+  "version": "1.0.0",
+  "description": "Toshida ng utilities",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ejdao/toshida-libraries.git"
+  },
+  "license": "MIT",
+  "sideEffects": false
+}
